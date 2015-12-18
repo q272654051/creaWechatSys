@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ehcache>
+	<defaultCache maxElementsInMemory="10000" eternal="false"
+		timeToIdleSeconds="1000" timeToLiveSeconds="1000" overflowToDisk="false"
+		memoryStoreEvictionPolicy="LRU" />
+		<!-- 指定区域cache：通过name指定，name对应到Hibernate中的区域名即可-->  
+  <cache name="com.crea.www.vo.User"  
+                eternal="false"  
+                maxElementsInMemory="100"  
+                timeToIdleSeconds="1200"  
+                timeToLiveSeconds="1200"  
+                overflowToDisk="false">  
+  </cache>
+</ehcache>
