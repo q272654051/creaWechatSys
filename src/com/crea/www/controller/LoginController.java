@@ -71,10 +71,30 @@ public class LoginController {
         }
     }
     
-    @RequestMapping("/loginSuccess")
-    public ModelAndView loginSuccess(HttpServletRequest request, HttpServletResponse response){
+    @RequestMapping("/tologout")
+    public ModelAndView logout(HttpServletRequest request, HttpServletResponse response){
+    	request.getSession().removeAttribute("userId");  //退出登录之前移除session
+    	request.getSession().removeAttribute("user_info");  //退出登录之前移除session
+    	ModelAndView mav = new ModelAndView("redirect:/login.jsp");
+        return mav;
+    }
+    
+    @RequestMapping("/toSysMain")
+    public ModelAndView toSysMain(HttpServletRequest request, HttpServletResponse response){
     	
-        return new ModelAndView("index");
+        return new ModelAndView("sysMain");
+    }
+    
+    @RequestMapping("/toAutoResponse")
+    public ModelAndView toAutoResponse(HttpServletRequest request, HttpServletResponse response){
+    	
+        return new ModelAndView("autoResponse");
+    }
+    
+    @RequestMapping("/toCreateTextInfo")
+    public ModelAndView toCreateTextInfo(HttpServletRequest request, HttpServletResponse response){
+    	
+        return new ModelAndView("createTextInfo");
     }
     
 }

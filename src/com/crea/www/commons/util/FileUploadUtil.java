@@ -9,6 +9,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
@@ -155,4 +156,24 @@ public class FileUploadUtil {
 		return return_list;
 	}
 
+	
+	public static final String FILE_PATH = "/upload/";  
+	  
+    //文件上传  
+    public static String uploadFile(MultipartFile file, HttpServletRequest request) throws IOException {  
+        String fileName = file.getOriginalFilename();  
+        File tempFile = new File(FILE_PATH, new Date().getTime() + String.valueOf(fileName));  
+        if (!tempFile.getParentFile().exists()) {
+            tempFile.getParentFile().mkdir();  
+        }  
+        if (!tempFile.exists()) {
+            tempFile.createNewFile();  
+        }  
+        file.transferTo(tempFile);  
+        return "/download?fileName=" + tempFile.getName();  
+    }  
+  
+    public static File getFile(String fileName) {  
+        return new File(FILE_PATH, fileName);  
+    } 
 }

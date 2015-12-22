@@ -1,6 +1,7 @@
 package com.crea.www.controller;
 
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -57,17 +58,15 @@ public class RelationController {
     @RequestMapping("/loadTextByKeyWord")
     public void loadTextByKeyWord(HttpServletRequest request, HttpServletResponse response,PrintWriter printWriter){
         Map<String,Object> result_map = new HashMap<String,Object>();
+        List textIdList = new ArrayList();
         String keyWordID = request.getParameter("keyWordId");
-        Integer curPage = Integer.parseInt(request.getParameter("curPage"));
-        Integer pageSize = Integer.parseInt(request.getParameter("pageSize"));
-        Pager result = new Pager();
         List<KeyLink> keyLinkList = keyLinkService.findKeyLinkBykeyWordId(keyWordID);
         for (int i=0; i<keyLinkList.size(); i++){
         	KeyLink keyLink = keyLinkList.get(i);
         	String massageID = keyLink.getMassageId();
-        	result = textService.findBySQLQuery(massageID, new Pager(curPage, pageSize));
+        	textIdList.add(massageID);
         }
-        result_map.put("data", result);
+        result_map.put("data", textIdList);
         printWriter.print(JsonUtil.jsonObject(result_map, null, null));
         printWriter.flush();
         printWriter.close();
@@ -82,17 +81,15 @@ public class RelationController {
     @RequestMapping("/loadArticleByKeyWord")
     public void loadArticleByKeyWord(HttpServletRequest request, HttpServletResponse response,PrintWriter printWriter){
         Map<String,Object> result_map = new HashMap<String,Object>();
+        List articleIdList = new ArrayList();
         String keyWordID = request.getParameter("keyWordId");
-        Integer curPage = Integer.parseInt(request.getParameter("curPage"));
-        Integer pageSize = Integer.parseInt(request.getParameter("pageSize"));
-        Pager result = new Pager();
         List<KeyLink> keyLinkList = keyLinkService.findKeyLinkBykeyWordId(keyWordID);
         for (int i=0; i<keyLinkList.size(); i++){
         	KeyLink keyLink = keyLinkList.get(i);
         	String massageID = keyLink.getMassageId();
-        	result = articleService.findBySQLQuery(massageID, new Pager(curPage, pageSize));
+        	articleIdList.add(massageID);
         }
-        result_map.put("data", result);
+        result_map.put("data", articleIdList);
         printWriter.print(JsonUtil.jsonObject(result_map, null, null));
         printWriter.flush();
         printWriter.close();

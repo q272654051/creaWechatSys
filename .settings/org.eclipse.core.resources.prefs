@@ -1,7 +1,4 @@
 eclipse.preferences.version=1
-encoding//WebRoot/WEB-INF/pages/employee.jsp=UTF-8
-encoding//WebRoot/WEB-INF/pages/index.jsp=UTF-8
-encoding//WebRoot/WEB-INF/pages/profile.jsp=UTF-8
 encoding//src/com/crea/www/commons/util/Base64andMD5Util.java=UTF-8
 encoding//src/com/crea/www/commons/util/ErweiCodeUtil.java=UTF-8
 encoding//src/com/crea/www/commons/util/ExcelUtil.java=UTF-8

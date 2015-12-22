@@ -54,14 +54,6 @@
 		</property>
 	</bean>
 	 
-	
-	<!-- 配置springMVC处理上传文件的信息,自定义上传,带进度条 -->
-	<!--  
-	<bean id="multipartResolver" class="com.yunfang.yunhe.commons.listener.CustomMultipartResolver">
-	<property name="defaultEncoding" value="utf-8" />
-		<property name="maxUploadSize" value="50000000000" />
-	</bean>
-	-->
 	<!--项目启动初始化家在一些数据库中的数据（数据字典）-->
 	<bean id="initDataListener" class="com.crea.www.commons.listener.InitDataListener">
 	</bean>

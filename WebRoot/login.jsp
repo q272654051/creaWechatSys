@@ -4,59 +4,55 @@ String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
 <!DOCTYPE html>
-<html lang="en" class="no-js">
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="content/framework/bootstrap-3.3.5/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="content/css/sys.css"/>
+    <style>
+        body{ background-color: #eee; }
+        .container{ max-width: 600px; }
+        h2{ padding-bottom: 10px; }
+    </style>
+</head>
+<body>
 
-    <head>
-
-        <meta charset="utf-8">
-        <title>资产管理系统登录</title>
-        <base href="<%=basePath%>"></base>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="">
-        <meta name="author" content="">
-
-        <!-- CSS -->
-        <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=PT+Sans:400,700'>
-        <link rel="stylesheet" href="content/assets/css/reset.css">
-        <link rel="stylesheet" href="content/assets/css/supersized.css">
-        <link rel="stylesheet" href="content/assets/css/style.css">
-
-        <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-        <!--[if lt IE 9]>
-            <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-        <![endif]-->
-
-    </head>
-
-    <body>
-
-        <div class="page-container">
-            <h1>Login</h1>
-            <form action="" method="post" id="userForm">
-                <input type="text" name="userName" id="userName" class="username" placeholder="Username">
-                <input type="password" name="password" id="password" class="password" placeholder="Password">
-                <button type="button" onclick="login()">登录</button>
-                <div class="error"><span>+</span></div>
-            </form>
-            <div class="connect">
-                <!-- <p>Or connect with:</p>
-                <p>
-                    <a class="facebook" href=""></a>
-                    <a class="twitter" href=""></a>
-                </p> -->
+<div class="container panel login-form" id="rendaLogin">
+    <h2 class="text-center text-success">微信后台管理系统</h2>
+    <form class="form-horizontal">
+        <div class="form-group">
+            <label for="username" class="col-sm-2 control-label">用户名</label>
+            <div class="col-sm-10">
+                <input type="email" class="form-control" id="username" placeholder="字母、数字、下划线">
             </div>
         </div>
-        <div align="center">版权所有</div>
+        <div class="form-group">
+            <label for="password" class="col-sm-2 control-label">密码</label>
+            <div class="col-sm-10">
+                <input type="password" class="form-control" id="password" placeholder="6-10位英文数字组合">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox">记住密码
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="button" class="btn btn-success" id="submitBtn">登 录</button>
+            </div>
+        </div>
+    </form>
+</div>
 
-        <!-- Javascript -->
-        <script src="content/assets/js/jquery-1.8.2.min.js"></script>
-        <script src="content/assets/js/supersized.3.2.7.min.js"></script>
-        <script src="content/assets/js/supersized-init.js"></script>
-        <script src="content/assets/js/scripts.js"></script>
-        <script src="content/plugin/layer/layer.js" type="text/javascript"></script>
-        <script src="content/js/login.js"></script>
 
-    </body>
+<script type="text/javascript" src="content/js/jquery-1.9.1.js"></script>
+<script type="text/javascript" src="content/js/sys.js"></script>
 
+</body>
 </html>
-
