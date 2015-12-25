@@ -44,7 +44,7 @@ public class KeyWord implements java.io.Serializable {
 		this.id = id;
 	}
 
-	@Column(name = "keyWord", length = 50)
+	@Column(name = "keyWord", length = 255)
 	public String getKeyWord() {
 		return this.keyWord;
 	}

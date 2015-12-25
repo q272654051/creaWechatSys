@@ -86,7 +86,7 @@ public class ReplyController {
         KeyLink keyLink = new KeyLink();
         JSONObject json = new JSONObject();
         JSONArray jsonArray = new JSONArray();
-        String keyWords = request.getParameter("keyWord");  //获取关键字，首次关注关键字为skajiuhuia9034jkh419njk41;
+        String keyWords = request.getParameter("keyWord");  //获取关键字，首次关注关键字为shouciguanzhiguanjianzi;
         List<KeyWord> keyWordList = keyWordService.findListByKeyWord(keyWords);
         if (keyWordList.size() > 0){
         	keyWord = keyWordList.get(0);

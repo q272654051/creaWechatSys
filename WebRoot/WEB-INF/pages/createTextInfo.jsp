@@ -62,7 +62,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         <div class="form-group">
                             <textarea class="form-control no-resize" id="content" name="content" cols="30" rows="10" placeholder="请输入描述文字信息"></textarea>
                         </div>
-                        <button id="saveBtn" type="button" onclick="saveText()"class="btn btn-info">保 存</button>
+                        <button id="saveBtn" type="button" class="btn btn-info">保 存</button>
                     </div>
                 </div>
             </form>
@@ -108,26 +108,28 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             items : ['link']
         });
         K('#saveBtn').click(function(e) {
-            alert(editor.html());
+            //alert(editor.html());
             var content = editor.html();
+            var textId = $("#textId").val();
             $.ajax({
                     type: "post",
                     url: "massageController/saveOrupdateText",
                     async:false,
                     data: {
+                        "id":textId,
                         "content":content
                     },
                     dataType: "json",
                     success: function(data){
                         if(data['success']){
-                            alert(data['success']);
+                            renda.tipMsg.config({width:300,type:'alert',msg:data['success']});
                             window.location.href = "loginController/toCreateTextInfo";  //加载主页面
                         }else{
-                            alert(data['success']);
+                            renda.tipMsg.config({width:300,type:'alert',msg:data['success']});
                         }
                     },
                     error: function(data){
-                        alert(data['success']);
+                        renda.tipMsg.config({width:300,type:'alert',msg:'系统异常，请稍后再试'});
                     }
                 });
         });

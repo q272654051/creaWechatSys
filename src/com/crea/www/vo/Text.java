@@ -42,7 +42,7 @@ public class Text implements java.io.Serializable {
 		this.id = id;
 	}
 
-	@Column(name = "content", length = 50)
+	@Column(name = "content", length = 255)
 	public String getContent() {
 		return this.content;
 	}

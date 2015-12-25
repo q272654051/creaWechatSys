@@ -89,59 +89,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                                 <th width="200">操作</th>
                                             </tr>
                                             </thead>
-                                            <tbody>
-                                            <tr>
-                                                <th scope="row">1</th>
-                                                <td><a href="#">♫房估估专题</a> |国内30个城市“ <a href="#">住宅投资回报率</a>”大PK!♫房估估专题 |国内30个城市“住宅投资回报率”大PK!</td>
-                                                <td>
-                                                    <a href="javascript:;" class="btn btn-sm btn-success disabled">关联成功 <span class="glyphicon glyphicon-ok"></span></a>
-                                                    <a href="javascript:;" class="btn btn-sm btn-default">取消关联</a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">1</th>
-                                                <td><a href="#">♫房估估专题</a> |国内30个城市“ <a href="#">住宅投资回报率</a>”大PK!♫房估估专题 |国内30个城市“住宅投资回报率”大PK!</td>
-                                                <td>
-                                                    <a href="javascript:;" class="btn btn-sm btn-info">设置关联 <span class="glyphicon glyphicon-cog"></span></a>
-                                                    <a href="javascript:;" class="btn btn-sm btn-default disabled">取消关联</a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">1</th>
-                                                <td><a href="#">♫房估估专题</a> |国内30个城市“ <a href="#">住宅投资回报率</a>”大PK!♫房估估专题 |国内30个城市“住宅投资回报率”大PK!</td>
-                                                <td>
-                                                    <a href="javascript:;" class="btn btn-sm btn-info">设置关联 <span class="glyphicon glyphicon-cog"></span></a>
-                                                    <a href="javascript:;" class="btn btn-sm btn-default disabled">取消关联</a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">1</th>
-                                                <td><a href="#">♫房估估专题</a> |国内30个城市“ <a href="#">住宅投资回报率</a>”大PK!♫房估估专题 |国内30个城市“住宅投资回报率”大PK!</td>
-                                                <td>
-                                                    <a href="javascript:;" class="btn btn-sm btn-info">设置关联 <span class="glyphicon glyphicon-cog"></span></a>
-                                                    <a href="javascript:;" class="btn btn-sm btn-default disabled">取消关联</a>
-                                                </td>
-                                            </tr>
+                                            <tbody id="textListFirst">
                                             </tbody>
                                         </table>
                                         <!-- /.table end -->
                                         <nav class="text-center">
-                                            <ul class="pagination">
-                                                <li>
-                                                    <a href="#" aria-label="Previous">
-                                                        <span aria-hidden="true">&laquo;</span>
-                                                    </a>
-                                                </li>
-                                                <li class="active"><a href="#">1</a></li>
-                                                <li><a href="#">2</a></li>
-                                                <li><a href="#">3</a></li>
-                                                <li><a href="#">4</a></li>
-                                                <li><a href="#">5</a></li>
-                                                <li>
-                                                    <a href="#" aria-label="Next">
-                                                        <span aria-hidden="true">&raquo;</span>
-                                                    </a>
-                                                </li>
+                                            <ul class="pagination" id="paginationListTextFirst">
                                             </ul>
                                         </nav><!-- /.page end -->
                                     </div><!-- /.tab-pane end -->
@@ -158,64 +111,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                                 <th width="200">操作</th>
                                             </tr>
                                             </thead>
-                                            <tbody>
-                                            <tr>
-                                                <th scope="row">5</th>
-                                                <td><img id="headpic" src="images/default.jpg" alt="" width="50" height=""></td>
-                                                <td>♫房估估专题 |国内30个城市“住宅投资回报率”大PK!</td>
-                                                <td>♫房估估专题 |国内30个城市“住宅投资回报率”大PK!♫房估估专题 |国内30个城市“住宅投资回报率”大PK!</td>
-                                                <td>http://weixin.fungugu.com/</td>
-                                                <td>
-                                                    <a href="javascript:;" class="btn btn-sm btn-info">设置关联 <span class="glyphicon glyphicon-cog"></span></a>
-                                                    <a href="javascript:;" class="btn btn-sm btn-default">取消关联</a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">4</th>
-                                                <td><img id="headpic" src="images/default.jpg" alt="" width="50" height=""></td>
-                                                <td>♫房估估专题 |国内30个城市“住宅投资回报率”大PK!</td>
-                                                <td>♫房估估专题 |国内30个城市“住宅投资回报率”大PK!♫房估估专题 |国内30个城市“住宅投资回报率”大PK!</td>
-                                                <td>http://weixin.fungugu.com/</td>
-                                                <td>
-                                                    <a href="javascript:;" class="btn btn-sm btn-info">设置关联 <span class="glyphicon glyphicon-cog"></span></a>
-                                                    <a href="javascript:;" class="btn btn-sm btn-default">取消关联</a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">3</th>
-                                                <td><img id="headpic" src="images/default.jpg" alt="" width="50" height=""></td>
-                                                <td>♫房估估专题 |国内30个城市“住宅投资回报率”大PK!</td>
-                                                <td>♫房估估专题 |国内30个城市“住宅投资回报率”大PK!♫房估估专题 |国内30个城市“住宅投资回报率”大PK!</td>
-                                                <td>http://weixin.fungugu.com/</td>
-                                                <td>
-                                                    <a href="javascript:;" class="btn btn-sm btn-info">设置关联 <span class="glyphicon glyphicon-cog"></span></a>
-                                                    <a href="javascript:;" class="btn btn-sm btn-default">取消关联</a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">2</th>
-                                                <td><img id="headpic" src="images/default.jpg" alt="" width="50" height=""></td>
-                                                <td>♫房估估专题 |国内30个城市“住宅投资回报率”大PK!</td>
-                                                <td>♫房估估专题 |国内30个城市“住宅投资回报率”大PK!♫房估估专题 |国内30个城市“住宅投资回报率”大PK!</td>
-                                                <td>http://weixin.fungugu.com/</td>
-                                                <td>
-                                                    <a href="javascript:;" class="btn btn-sm btn-info">设置关联 <span class="glyphicon glyphicon-cog"></span></a>
-                                                    <a href="javascript:;" class="btn btn-sm btn-default">取消关联</a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">1</th>
-                                                <td><img id="headpic" src="images/default.jpg" alt="" width="50" height=""></td>
-                                                <td>♫房估估专题 |国内30个城市“住宅投资回报率”大PK!</td>
-                                                <td>♫房估估专题 |国内30个城市“住宅投资回报率”大PK!♫房估估专题 |国内30个城市“住宅投资回报率”大PK!</td>
-                                                <td>http://weixin.fungugu.com/</td>
-                                                <td>
-                                                    <a href="javascript:;" class="btn btn-sm btn-info">设置关联 <span class="glyphicon glyphicon-cog"></span></a>
-                                                    <a href="javascript:;" class="btn btn-sm btn-default">取消关联</a>
-                                                </td>
-                                            </tr>
+                                            <tbody id="articleListFirst">
                                             </tbody>
                                         </table>
+                                        <nav class="text-center">
+							                <ul class="pagination" id="paginationListArticleFirst">
+							                </ul>
+							            </nav>
                                     </div>
                                 </div>
                             </div>
@@ -245,59 +147,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                                 <th width="200">操作</th>
                                             </tr>
                                             </thead>
-                                            <tbody>
-                                            <tr>
-                                                <th scope="row">1</th>
-                                                <td><a href="#">♫房估估专题</a> |国内30个城市“ <a href="#">住宅投资回报率</a>”大PK!♫房估估专题 |国内30个城市“住宅投资回报率”大PK!</td>
-                                                <td>
-                                                    <a href="javascript:;" class="btn btn-sm btn-success">关联成功 <span class="glyphicon glyphicon-ok"></span></a>
-                                                    <a href="javascript:;" class="btn btn-sm btn-default">取消关联</a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">1</th>
-                                                <td><a href="#">♫房估估专题</a> |国内30个城市“ <a href="#">住宅投资回报率</a>”大PK!♫房估估专题 |国内30个城市“住宅投资回报率”大PK!</td>
-                                                <td>
-                                                    <a href="javascript:;" class="btn btn-sm btn-info">设置关联 <span class="glyphicon glyphicon-cog"></span></a>
-                                                    <a href="javascript:;" class="btn btn-sm btn-default">取消关联</a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">1</th>
-                                                <td><a href="#">♫房估估专题</a> |国内30个城市“ <a href="#">住宅投资回报率</a>”大PK!♫房估估专题 |国内30个城市“住宅投资回报率”大PK!</td>
-                                                <td>
-                                                    <a href="javascript:;" class="btn btn-sm btn-info">设置关联 <span class="glyphicon glyphicon-cog"></span></a>
-                                                    <a href="javascript:;" class="btn btn-sm btn-default">取消关联</a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">1</th>
-                                                <td><a href="#">♫房估估专题</a> |国内30个城市“ <a href="#">住宅投资回报率</a>”大PK!♫房估估专题 |国内30个城市“住宅投资回报率”大PK!</td>
-                                                <td>
-                                                    <a href="javascript:;" class="btn btn-sm btn-info">设置关联 <span class="glyphicon glyphicon-cog"></span></a>
-                                                    <a href="javascript:;" class="btn btn-sm btn-default">取消关联</a>
-                                                </td>
-                                            </tr>
+                                            <tbody id="textListAuto">
                                             </tbody>
                                         </table>
                                         <!-- /.table end -->
                                         <nav class="text-center">
-                                            <ul class="pagination">
-                                                <li>
-                                                    <a href="#" aria-label="Previous">
-                                                        <span aria-hidden="true">&laquo;</span>
-                                                    </a>
-                                                </li>
-                                                <li class="active"><a href="#">1</a></li>
-                                                <li><a href="#">2</a></li>
-                                                <li><a href="#">3</a></li>
-                                                <li><a href="#">4</a></li>
-                                                <li><a href="#">5</a></li>
-                                                <li>
-                                                    <a href="#" aria-label="Next">
-                                                        <span aria-hidden="true">&raquo;</span>
-                                                    </a>
-                                                </li>
+                                            <ul class="pagination" id="paginationListTextAuto">
                                             </ul>
                                         </nav><!-- /.page end -->
                                     </div><!-- /.tab-pane end -->
@@ -314,64 +169,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                                 <th width="200">操作</th>
                                             </tr>
                                             </thead>
-                                            <tbody>
-                                            <tr>
-                                                <th scope="row">5</th>
-                                                <td><img id="headpic" src="images/default.jpg" alt="" width="50" height=""></td>
-                                                <td>♫房估估专题 |国内30个城市“住宅投资回报率”大PK!</td>
-                                                <td>♫房估估专题 |国内30个城市“住宅投资回报率”大PK!♫房估估专题 |国内30个城市“住宅投资回报率”大PK!</td>
-                                                <td>http://weixin.fungugu.com/</td>
-                                                <td>
-                                                    <a href="javascript:;" class="btn btn-sm btn-info">设置关联 <span class="glyphicon glyphicon-cog"></span></a>
-                                                    <a href="javascript:;" class="btn btn-sm btn-default">取消关联</a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">4</th>
-                                                <td><img id="headpic" src="images/default.jpg" alt="" width="50" height=""></td>
-                                                <td>♫房估估专题 |国内30个城市“住宅投资回报率”大PK!</td>
-                                                <td>♫房估估专题 |国内30个城市“住宅投资回报率”大PK!♫房估估专题 |国内30个城市“住宅投资回报率”大PK!</td>
-                                                <td>http://weixin.fungugu.com/</td>
-                                                <td>
-                                                    <a href="javascript:;" class="btn btn-sm btn-info">设置关联 <span class="glyphicon glyphicon-cog"></span></a>
-                                                    <a href="javascript:;" class="btn btn-sm btn-default">取消关联</a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">3</th>
-                                                <td><img id="headpic" src="images/default.jpg" alt="" width="50" height=""></td>
-                                                <td>♫房估估专题 |国内30个城市“住宅投资回报率”大PK!</td>
-                                                <td>♫房估估专题 |国内30个城市“住宅投资回报率”大PK!♫房估估专题 |国内30个城市“住宅投资回报率”大PK!</td>
-                                                <td>http://weixin.fungugu.com/</td>
-                                                <td>
-                                                    <a href="javascript:;" class="btn btn-sm btn-info">设置关联 <span class="glyphicon glyphicon-cog"></span></a>
-                                                    <a href="javascript:;" class="btn btn-sm btn-default">取消关联</a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">2</th>
-                                                <td><img id="headpic" src="images/default.jpg" alt="" width="50" height=""></td>
-                                                <td>♫房估估专题 |国内30个城市“住宅投资回报率”大PK!</td>
-                                                <td>♫房估估专题 |国内30个城市“住宅投资回报率”大PK!♫房估估专题 |国内30个城市“住宅投资回报率”大PK!</td>
-                                                <td>http://weixin.fungugu.com/</td>
-                                                <td>
-                                                    <a href="javascript:;" class="btn btn-sm btn-info">设置关联 <span class="glyphicon glyphicon-cog"></span></a>
-                                                    <a href="javascript:;" class="btn btn-sm btn-default">取消关联</a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">1</th>
-                                                <td><img id="headpic" src="images/default.jpg" alt="" width="50" height=""></td>
-                                                <td>♫房估估专题 |国内30个城市“住宅投资回报率”大PK!</td>
-                                                <td>♫房估估专题 |国内30个城市“住宅投资回报率”大PK!♫房估估专题 |国内30个城市“住宅投资回报率”大PK!</td>
-                                                <td>http://weixin.fungugu.com/</td>
-                                                <td>
-                                                    <a href="javascript:;" class="btn btn-sm btn-info">设置关联 <span class="glyphicon glyphicon-cog"></span></a>
-                                                    <a href="javascript:;" class="btn btn-sm btn-default">取消关联</a>
-                                                </td>
-                                            </tr>
+                                            <tbody id="articleListAuto">
                                             </tbody>
                                         </table>
+                                        <nav class="text-center">
+							                <ul class="pagination" id="paginationListArticleAuto">
+							                </ul>
+							            </nav>
                                     </div>
                                 </div>
                             </div>
@@ -394,12 +198,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 
                                     <div class="btn btn-default key-item">
-                                        <!--<div data-id="1" class="input-group" title="显示关键词显示关键词显示关键词显示关键词显示关键词显示关键词">
-                                            <input class="form-control" style="width: 420px" type="text" value="显示关键词显示关键词显示关键词显示关键词显示关键词显示关键词"/>
-                                            <span class="input-group-btn">
-                                                <button class="btn btn-default">保存</button>
-                                            </span>
-                                        </div>-->
                                         <div data-id="1" class="input-group" title="显示关键词显示关键词显示关键词显示关键词显示关键词显示关键词">
                                             <span class="key">显示关键词显示关键词显示关键词显示关键词显示关键词显示关键词</span>
                                             <span class="glyphicon glyphicon-remove" title="删除"></span>
@@ -472,59 +270,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                         <th>状态/操作</th>
                                     </tr>
                                     </thead>
-                                    <tbody>
-                                    <tr>
-                                        <td>
-                                            <input type="checkbox"/>
-                                        </td>
-                                        <td scope="row">5</td>
-                                        <td>♫房估估专题 |国内30个城市“住宅投资回报率”大PK!♫房估估专题 |国内30个城市“住宅投资回报率”大PK!</td>
-                                        <td>
-                                            <a href="javascript:;" class="btn btn-sm btn-success disabled">关联成功 <span class="glyphicon glyphicon-ok"></span></a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <input type="checkbox"/>
-                                        </td>
-                                        <td scope="row">4</td>
-                                        <td>♫房估估专题 |国内30个城市“住宅投资回报率”大PK!♫房估估专题 |国内30个城市“住宅投资回报率”大PK!</td>
-                                        <td>
-                                            <a href="javascript:;" class="btn btn-sm btn-default">设置关联 <span class="glyphicon glyphicon-cog"></span></a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <input type="checkbox"/>
-                                        </td>
-                                        <td scope="row">3</td>
-                                        <td>♫房估估专题 |国内30个城市“住宅投资回报率”大PK!♫房估估专题 |国内30个城市“住宅投资回报率”大PK!</td>
-                                        <td>
-                                            <a href="javascript:;" class="btn btn-sm btn-default">设置关联 <span class="glyphicon glyphicon-cog"></span></a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <input type="checkbox"/>
-                                        </td>
-                                        <td scope="row">2</td>
-                                        <td>♫房估估专题 |国内30个城市“住宅投资回报率”大PK!♫房估估专题 |国内30个城市“住宅投资回报率”大PK!</td>
-                                        <td>
-                                            <a href="javascript:;" class="btn btn-sm btn-default">设置关联 <span class="glyphicon glyphicon-cog"></span></a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <input type="checkbox"/>
-                                        </td>
-                                        <td scope="row">1</td>
-                                        <td>♫房估估专题 |国内30个城市“住宅投资回报率”大PK!♫房估估专题 |国内30个城市“住宅投资回报率”大PK!</td>
-                                        <td>
-                                            <a href="javascript:;" class="btn btn-sm btn-default">设置关联 <span class="glyphicon glyphicon-cog"></span></a>
-                                        </td>
-                                    </tr>
+                                    <tbody id="textListKey">
                                     </tbody>
                                 </table>
+                                <nav class="text-center">
+                                            <ul class="pagination" id="paginationListTextKey">
+                                            </ul>
+                                        </nav><!-- /.page end -->
 
                             </div>
                             <div class="tab-pane fade" id="keyPicInfo">
@@ -546,74 +298,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                         <th>状态/操作</th>
                                     </tr>
                                     </thead>
-                                    <tbody>
-                                    <tr>
-                                        <td>
-                                            <input type="checkbox"/>
-                                        </td>
-                                        <td scope="row">5</td>
-                                        <td><img id="headpic" src="images/default.jpg" alt="" width="50" height=""></td>
-                                        <td>♫房估估专题 |国内30个城市“住宅投资回报率”大PK!</td>
-                                        <td>♫房估估专题 |国内30个城市“住宅投资回报率”大PK!♫房估估专题 |国内30个城市“住宅投资回报率”大PK!</td>
-                                        <td>http://weixin.fungugu.com/</td>
-                                        <td>
-                                            <a href="javascript:;" class="btn btn-sm btn-success disabled">关联成功 <span class="glyphicon glyphicon-ok"></span></a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <input type="checkbox"/>
-                                        </td>
-                                        <td scope="row">4</td>
-                                        <td><img id="headpic" src="images/default.jpg" alt="" width="50" height=""></td>
-                                        <td>♫房估估专题 |国内30个城市“住宅投资回报率”大PK!</td>
-                                        <td>♫房估估专题 |国内30个城市“住宅投资回报率”大PK!♫房估估专题 |国内30个城市“住宅投资回报率”大PK!</td>
-                                        <td>http://weixin.fungugu.com/</td>
-                                        <td>
-                                            <a href="javascript:;" class="btn btn-sm btn-default">设置关联 <span class="glyphicon glyphicon-cog"></span></a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <input type="checkbox"/>
-                                        </td>
-                                        <td scope="row">3</td>
-                                        <td><img id="headpic" src="images/default.jpg" alt="" width="50" height=""></td>
-                                        <td>♫房估估专题 |国内30个城市“住宅投资回报率”大PK!</td>
-                                        <td>♫房估估专题 |国内30个城市“住宅投资回报率”大PK!♫房估估专题 |国内30个城市“住宅投资回报率”大PK!</td>
-                                        <td>http://weixin.fungugu.com/</td>
-                                        <td>
-                                            <a href="javascript:;" class="btn btn-sm btn-default">设置关联 <span class="glyphicon glyphicon-cog"></span></a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <input type="checkbox"/>
-                                        </td>
-                                        <td scope="row">2</td>
-                                        <td><img id="headpic" src="images/default.jpg" alt="" width="50" height=""></td>
-                                        <td>♫房估估专题 |国内30个城市“住宅投资回报率”大PK!</td>
-                                        <td>♫房估估专题 |国内30个城市“住宅投资回报率”大PK!♫房估估专题 |国内30个城市“住宅投资回报率”大PK!</td>
-                                        <td>http://weixin.fungugu.com/</td>
-                                        <td>
-                                            <a href="javascript:;" class="btn btn-sm btn-default">设置关联 <span class="glyphicon glyphicon-cog"></span></a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <input type="checkbox"/>
-                                        </td>
-                                        <td scope="row">1</td>
-                                        <td><img id="headpic" src="images/default.jpg" alt="" width="50" height=""></td>
-                                        <td>♫房估估专题 |国内30个城市“住宅投资回报率”大PK!</td>
-                                        <td>♫房估估专题 |国内30个城市“住宅投资回报率”大PK!♫房估估专题 |国内30个城市“住宅投资回报率”大PK!</td>
-                                        <td>http://weixin.fungugu.com/</td>
-                                        <td>
-                                            <a href="javascript:;" class="btn btn-sm btn-default">设置关联 <span class="glyphicon glyphicon-cog"></span></a>
-                                        </td>
-                                    </tr>
+                                    <tbody id="articleListKey">
                                     </tbody>
                                 </table>
+                                <nav class="text-center">
+                                            <ul class="pagination" id="paginationListArticleKey">
+                                            </ul>
+                                        </nav><!-- /.page end -->
 
                             </div>
 
@@ -633,7 +324,25 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script type="text/javascript" src="content/js/jquery-1.9.1.js"></script>
 <script type="text/javascript" src="content/framework/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="content/js/sys.js"></script>
+<script type="text/javascript" src="content/jsp/loadTextFirst.js"></script>
+<script type="text/javascript" src="content/jsp/loadArticleFirst.js"></script>
+<script type="text/javascript" src="content/jsp/loadTextAuto.js"></script>
+<script type="text/javascript" src="content/jsp/loadArticleAuto.js"></script>
+<script type="text/javascript" src="content/jsp/loadTextKey.js"></script>
+<script type="text/javascript" src="content/jsp/loadArticleKey.js"></script>
+<script type="text/javascript">
+$(function(){
 
+     loadTextFirst(1);
+    loadArticleFirst(1);
+    loadTextAuto(1);
+    loadArticleAuto(1);
+    loadTextKey(1,"");
+    loadArticleKey(1,"");
+    
+});
+
+</script>
 
 </body>
 </html>

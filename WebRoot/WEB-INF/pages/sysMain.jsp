@@ -59,25 +59,36 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <div class="row">
                     <div class="col-md-2 pic-upload">
                         <a class="thumbnail" id="preview">
-                            <img id="headpic" src="images/default.jpg" alt="" width="250" height="150">
+                            <img id="headpic" src="http://www.crea.com.cn/renda/Public/images/img2.jpg" alt="" width="250" height="150">
                         </a>
-                        <div class="form-group file-upload">
-                            <input type="file" id="exampleInputFile">
-                        </div>
-                        <p class="help-block">上传消息头图</p>
+                        <!-- <div class="form-group file-upload">
+                             <input type="file" id="exampleInputFile">
+                        </div> -->
+                        <form id="picFileForm">
+                            <input type="file" id="exampleInputFile" name="picFile">
+                            <input type="button" id="uploadImg1" class="help-block" value="生成路径">
+                        </form>
+                        <form id= "uploadForm">  
+						      <p >指定文件名： <input type="text" name="filename" value= ""/></p >  
+						      <p >上传文件： <input type="file" name="file"/></p>  
+						      <input type="button" value="上传" id="uploadImg" />  
+						</form> 
+                        <input type="text" id="picUrl" class="form-control" placeholder="http://">
+                        <!-- <p class="help-block">上传消息头图</p> -->
                     </div>
                     <div class="col-md-10">
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="请输入标题文字信息">
+                            <input type="hidden" id="id">
+                            <input type="text" id="title" class="form-control" placeholder="请输入标题文字信息">
                         </div>
                         <div class="form-group">
-                            <textarea class="form-control no-resize" name="" cols="30" rows="10" placeholder="请输入描述文字信息"></textarea>
+                            <textarea class="form-control no-resize" id="description" name="" cols="30" rows="10" placeholder="请输入描述文字信息"></textarea>
                         </div>
                         <div class="form-group">
                             <div class="checkbox">
                                 <label><input type="checkbox"/>源文链接</label>
                             </div>
-                            <input type="text" class="form-control" placeholder="http://"/>
+                            <input type="text" id="url" class="form-control" placeholder="http://"/>
                         </div>
                         <button id="saveArticle" type="button" class="btn btn-info">保 存</button>
                     </div>
@@ -99,81 +110,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <th width="120">操作</th>
                 </tr>
                 </thead>
-                <tbody>
+                <tbody id="articleList">
                 <tr>
-                    <th scope="row">5</th>
-                    <td><img id="headpic" src="images/default.jpg" alt="" width="50" height=""></td>
-                    <td>♫房估估专题 |国内30个城市“住宅投资回报率”大PK!</td>
-                    <td>♫房估估专题 |国内30个城市“住宅投资回报率”大PK!♫房估估专题 |国内30个城市“住宅投资回报率”大PK!</td>
-                    <td>http://weixin.fungugu.com/</td>
-                    <td>
-                        <a href="javascript:;" class="btn btn-sm btn-info">修改</a>
-                        <a href="javascript:;" class="btn btn-sm btn-warning">删除</a>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">4</th>
-                    <td><img id="headpic" src="images/default.jpg" alt="" width="50" height=""></td>
-                    <td>♫房估估专题 |国内30个城市“住宅投资回报率”大PK!</td>
-                    <td>♫房估估专题 |国内30个城市“住宅投资回报率”大PK!♫房估估专题 |国内30个城市“住宅投资回报率”大PK!</td>
-                    <td>http://weixin.fungugu.com/</td>
-                    <td>
-                        <a href="javascript:;" class="btn btn-sm btn-info">修改</a>
-                        <a href="javascript:;" class="btn btn-sm btn-warning">删除</a>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td><img id="headpic" src="images/default.jpg" alt="" width="50" height=""></td>
-                    <td>♫房估估专题 |国内30个城市“住宅投资回报率”大PK!</td>
-                    <td>♫房估估专题 |国内30个城市“住宅投资回报率”大PK!♫房估估专题 |国内30个城市“住宅投资回报率”大PK!</td>
-                    <td>http://weixin.fungugu.com/</td>
-                    <td>
-                        <a href="javascript:;" class="btn btn-sm btn-info">修改</a>
-                        <a href="javascript:;" class="btn btn-sm btn-warning">删除</a>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td><img id="headpic" src="images/default.jpg" alt="" width="50" height=""></td>
-                    <td>♫房估估专题 |国内30个城市“住宅投资回报率”大PK!</td>
-                    <td>♫房估估专题 |国内30个城市“住宅投资回报率”大PK!♫房估估专题 |国内30个城市“住宅投资回报率”大PK!</td>
-                    <td>http://weixin.fungugu.com/</td>
-                    <td>
-                        <a href="javascript:;" class="btn btn-sm btn-info">修改</a>
-                        <a href="javascript:;" class="btn btn-sm btn-warning">删除</a>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">1</th>
-                    <td><img id="headpic" src="images/default.jpg" alt="" width="50" height=""></td>
-                    <td>♫房估估专题 |国内30个城市“住宅投资回报率”大PK!</td>
-                    <td>♫房估估专题 |国内30个城市“住宅投资回报率”大PK!♫房估估专题 |国内30个城市“住宅投资回报率”大PK!</td>
-                    <td>http://weixin.fungugu.com/</td>
-                    <td>
-                        <a href="javascript:;" class="btn btn-sm btn-info">修改</a>
-                        <a href="javascript:;" class="btn btn-sm btn-warning">删除</a>
-                    </td>
                 </tr>
                 </tbody>
             </table>
             <nav class="text-center">
                 <ul class="pagination">
-                    <li>
-                        <a href="#" aria-label="Previous">
-                            <span aria-hidden="true">&laquo;</span>
-                        </a>
-                    </li>
-                    <li class="active"><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                    <li>
-                        <a href="#" aria-label="Next">
-                            <span aria-hidden="true">&raquo;</span>
-                        </a>
-                    </li>
                 </ul>
             </nav>
         </div><!-- /.col-sm-9 end-->
@@ -182,14 +125,70 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 </div>
 <script type="text/javascript" src="content/js/jquery-1.9.1.js"></script>
+<script type="text/javascript" src="content/js/jquery.form.min.js"></script>
 <script type="text/javascript" src="content/framework/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="content/js/sys.js"></script>
-<script type="text/javascript"></script>
+<script type="text/javascript" src="content/jsp/sysMain.js"></script>
 <script type="text/javascript">
 
+$(function(){
+    loadArticle(1);
+})
+
+$("#uploadImg").click(function() {
+	/* var fileObj = $("#picFileForm").files[0]; */
+	var formData = new FormData($("#uploadForm")[0]);
+	//formData.append("file", fileObj);
+	/* var formdata = new FormData();              
+    var fileObj = document.getElementById("fileToUpload2").files;              
+        for (var i = 0; i < fileObj.length; i++)                  
+        formdata.append("file" + i, fileObj[i]); */
+	$.ajax({
+	    type: "post",
+        url: "massageController/uploadImg",
+        data: formData,
+        dataType: "json",
+        success: function(data){
+        	
+        },
+        error: function(data){
+        	alert("系统错误，请联系管理员");
+        }
+    });
+})
+
+
 $("#saveArticle").click(function() {
-	var filePath = $("#headpic").attr("src");
-	console.log(filePath);
+	var id = $("#id").val();
+	var picUrl = $("#picUrl").val();
+	var title = $("#title").val();
+	var description = $("#description").val();
+	var url= $("#url").val();
+	$.ajax({
+	    type: "post",
+        url: "massageController/saveOrupdateArticle",
+        async:false,
+        data: {
+            "id":id,
+            "title":title,
+            "description":description,
+            "url":url,
+            "picUrl":picUrl
+        },
+        dataType: "json",
+        success: function(data){
+        	if(data['success']=="添加成功"){
+        		alert("修改成功");
+        		window.location.href = "loginController/toSysMain";  //加载主页面
+        	}else{
+        		alert("修改错误，请稍后再试");
+        	}
+        },
+        error: function(data){
+        	alert("系统错误，请联系管理员");
+        }
+    });
+	
 
 })
 </script>

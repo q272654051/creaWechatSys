@@ -48,7 +48,7 @@ public class Article implements java.io.Serializable {
 		this.id = id;
 	}
 
-	@Column(name = "title", length = 50)
+	@Column(name = "title", length = 255)
 	public String getTitle() {
 		return this.title;
 	}
@@ -57,7 +57,7 @@ public class Article implements java.io.Serializable {
 		this.title = title;
 	}
 
-	@Column(name = "description", length = 50)
+	@Column(name = "description", length = 255)
 	public String getDescription() {
 		return description;
 	}
@@ -66,7 +66,7 @@ public class Article implements java.io.Serializable {
 		this.description = description;
 	}
 
-	@Column(name = "picUrl", length = 50)
+	@Column(name = "picUrl", length = 255)
 	public String getPicUrl() {
 		return picUrl;
 	}
@@ -75,7 +75,7 @@ public class Article implements java.io.Serializable {
 		this.picUrl = picUrl;
 	}
 
-	@Column(name = "url", length = 50)
+	@Column(name = "url", length = 255)
 	public String getUrl() {
 		return url;
 	}

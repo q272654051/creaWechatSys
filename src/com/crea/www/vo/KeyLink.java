@@ -44,7 +44,7 @@ public class KeyLink implements java.io.Serializable {
 		this.id = id;
 	}
 
-	@Column(name = "keyWordId", length = 50)
+	@Column(name = "keyWordId", length = 255)
 	public String getKeyWordId() {
 		return this.keyWordId;
 	}
@@ -53,7 +53,7 @@ public class KeyLink implements java.io.Serializable {
 		this.keyWordId = keyWordId;
 	}
 
-	@Column(name = "massageId")
+	@Column(name = "massageId", length = 255)
 	public String getMassageId() {
 		return this.massageId;
 	}

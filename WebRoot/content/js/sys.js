@@ -355,6 +355,7 @@
             this.elems();
             this.showEvent();
             this.config();
+            this.loadKeyWord();            
             this.bindEvent();
         },
         config: function() {
@@ -407,15 +408,16 @@
             $.ajax({
                 // 请求匹配关键字
                 type: 'post',
-                url: self.location+'RendaWxSys/autoResponse.html?value=',
-                dataType: 'html',
-                data: {},
+                url: "relationController/saveOrupdateKeyWord",
+                dataType: 'json',
+                data: {
+                	"keyWord":this.oEngine.value
+                },
                 async: false,
-                success: function(data) {
-                    var data = {
-                        id:1,
-                        name:'关联信息关联信息关联信息关联信息'
-                    };
+                success: function(msg) {
+                	var data = msg['data'];
+                	console.log(data.id);
+                	console.log(data.keyWord);
                     // bind html attr
                     oDiv = document.createElement('div');
                     oDiv.setAttribute('class', 'btn btn-default key-item');
@@ -426,7 +428,7 @@
 
                     attrs = renda.dom.getByClass(oDiv,'input-group')[0];
                     attrs.setAttribute('data-id',data.id);
-                    attrs.setAttribute('title',data.name);
+                    attrs.setAttribute('title',data.keyWord);
 
                     refChild = self.oKeyListBox.getElementsByTagName('*')[0];
                     self.oKeyListBox.insertBefore(oDiv, refChild);
@@ -458,6 +460,7 @@
                 }
             }
             function bindClick(obj, e) {
+            	var dataId = renda.dom.getByClass(obj,'input-group')[0].getAttribute('data-id');
                 renda.stop.stopPropagation(e);
                 target = e.target || e.srcElement;
                 switch (target.className) {
@@ -476,8 +479,11 @@
                                 $.ajax({
                                     // 请求匹配关键字
                                     type: 'post',
-                                    url: self.location+'RendaWxSys/autoResponse.html',
-                                    dataType: 'html',
+                                    url: "relationController/deleteKeyWord",
+                                    dataType: 'json',
+                                    data:{
+                                    	"id":dataId
+                                    },
                                     async: false,
                                     success: function(data) {
                                         if (obj.parentNode == null) return;
@@ -538,16 +544,20 @@
                             * 数据无变化不提交
                             * */
                             if( sInput.value == oSpan.innerHTML ) return;
-                            $.ajax({
+                            console.log(sInput.value+":::::"+oSpan.innerHTML);
+                            /*$.ajax({
                                 type: 'post',
-                                url: '',
+                                url: 'relationController/saveOrupdateKeyWord',
                                 dataType: 'json',
                                 async: false,
+                                data:{
+                                	"id":dataId,
+                                	"keyWord":sInput.value
+                                },
                                 success: function(data) {
-                                    // update data
                                 },
                                 error: function() {}
-                            });
+                            });*/
                         });
                         break;
                     case 'key':
@@ -570,6 +580,8 @@
                                 },
                                 error: function() {}
                             });
+                            alert( dataId );
+                            
                         }
                         break;
                     default:
@@ -590,6 +602,8 @@
                 return;
             }
             oEm.innerHTML = sLen;
+            console.log(oEm);
+            console.log(sLen);
             /*$.ajax({
                 // 请求匹配关键字
                 type: 'get',
@@ -601,6 +615,36 @@
                 },
                 error: function() {}
             });*/
+        },
+        loadKeyWord:function(){
+        	$.ajax({
+        	  	   type: "post",
+        	         url: "relationController/loadKeyWord",
+        	         async:false,
+        	         data: {
+        	         },
+        	         dataType: "json",
+        	         success: function(msg){
+        	        	 var listTr = $("#keywordsList");
+        	             listTr.html("");
+        	             var data = eval(msg['data']);
+        	             if (data.list.length>0){
+        		            for (var i = 0; i < data.list.length; i++) {
+        		            	if (data.list[i].id=='shouciguanzhuid' || data.list[i].id=='morenhuifuid') continue;
+        	            		listTr.append('<div class="btn btn-default key-item">'
+        	            				+'<div data-id="'+data.list[i].id+'" class="input-group" title="'+data.list[i].keyWord+'">'
+        	            				+'<span class="key">'+data.list[i].keyWord+'</span>'
+        	            				+'<span class="glyphicon glyphicon-remove" title="删除"></span>'
+        	            				+'<span class="glyphicon glyphicon-edit" title="编辑"></span></div></div>');
+        		            }
+        	            }else{
+        	            	listTr.append("");
+        	            }
+        	         },
+        	         error: function(data){
+        	             alert("系统错误，请联系管理员");
+        	         }
+        	  });
         }
     };
     keyResponse.init();
@@ -673,3 +717,4 @@
     
 
 })();
+

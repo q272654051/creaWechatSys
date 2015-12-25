@@ -1,14 +1,20 @@
 package com.crea.www.controller;
 
 import java.awt.image.BufferedImage;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -21,6 +27,8 @@ import javax.servlet.http.HttpServletResponse;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
+import org.apache.commons.fileupload.DiskFileUpload;
+import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Controller;
@@ -92,7 +100,7 @@ public class MassageController {
     public void loadArticle(HttpServletRequest request, HttpServletResponse response,PrintWriter printWriter){
         Map<String,Object> result_map = new HashMap<String,Object>();
         Integer curPage = Integer.parseInt(request.getParameter("curPage"));
-        Integer pageSize = Integer.parseInt(request.getParameter("pageSize"));
+        Integer pageSize = 5;
         Pager pagers = new Pager(curPage, pageSize);
         Pager result = articleService.findBySQLQuery(pagers);
         result_map.put("data", result);
@@ -149,20 +157,20 @@ public class MassageController {
         Article article = new Article();
         if (StringUtils.isNotBlank(id) && id != "null"){
         	article = articleService.findById(id);
-        	article.setTitle(title);
-        	article.setDescription(description);
-        	article.setPicUrl(picUrl);
-        	article.setUrl(url);
         } else {
         	article.setId(UUID.randomUUID()+"");
-        	article.setTitle(title);
-        	article.setDescription(description);
-        	article.setPicUrl(picUrl);
-        	article.setUrl(url);
         }
+        article.setTitle(title);
+        article.setDescription(description);
+        article.setPicUrl(picUrl);
+        article.setUrl(url);
         
         Boolean bon = articleService.saveOrUpdate(article);
-        result_map.put("success", bon);
+        if (bon){
+        	result_map.put("success", "添加成功");
+        } else {
+        	result_map.put("success", "添加失败");
+        }
         printWriter.print(JsonUtil.jsonObject(result_map, null, null));
         printWriter.flush();
         printWriter.close();
@@ -202,114 +210,36 @@ public class MassageController {
         printWriter.close();
     }
     
-    /**
-     * 上传图片到服务器
-     * @param request
-     * @param response
-     * @param printWriter
-     */
-    @RequestMapping("/upload")  
-    public void upload(@RequestParam("studentPhoto") MultipartFile file, HttpServletRequest request, HttpServletResponse response,PrintWriter printWriter) throws IOException {  
-    	Map<String,Object> result_map = new HashMap<String,Object>();
-    	String filePath = FileUploadUtil.uploadFile(file, request);  
-        result_map.put("success", true);
-		result_map.put("data", filePath);
-		printWriter.print(JsonUtil.jsonObject(result_map, null, null));
-        printWriter.flush();
-        printWriter.close();
-    }
-    
-    @RequestMapping("/download")  
-    public void download(String fileName, HttpServletResponse response) throws IOException {  
-        OutputStream os = response.getOutputStream();  
-        try {  
-            response.reset();  
-            response.setHeader("Content-Disposition", "attachment; filename=" + fileName);  
-            response.setContentType("image/jpeg; charset=utf-8");  
-            os.write(FileUtils.readFileToByteArray(FileUploadUtil.getFile(fileName)));  
-            os.flush();  
-        } finally {  
-            if (os != null) {  
-                os.close();  
-            }  
-        }  
-    }  
-    
-    @RequestMapping(value="/uploadImage")
-    public void uploadImage(HttpServletRequest request, HttpServletResponse response,PrintWriter printWriter){
-    	Map<String,Object> result_map = new HashMap<String,Object>();
-        String filePath = request.getParameter("filePath");
-        String serverPath = "/uploadImg";
-        String logoRealPathDir = request.getSession().getServletContext().getRealPath(serverPath);
-        String resultPath;
-        String root = request.getServletPath();
-		try {
-			resultPath = LoadImageToServer(filePath,logoRealPathDir);
-			result_map.put("success", true);
-			result_map.put("data", resultPath);
-		} catch (Exception e) {
-			result_map.put("success", false);
-			e.printStackTrace();
-		}
-        printWriter.print(JsonUtil.jsonObject(result_map, null, null));
-        printWriter.flush();
-        printWriter.close();
-    }
-    
-    /**
-     * 上传图片的方法
-     * @param filePath
-     * @param serverPath
+    /***
+     * 保存文件
+     *
+     * @param file
      * @return
-     * @throws Exception
      */
-    public String LoadImageToServer(String filePath,String serverPath) throws Exception {
-        String resultPath = "";          //上传后图片所在的路径
-        FileOutputStream out = null;     //文件输出流
-        try {                               //验证图片上传的格式是否正确
-         File f = new File(filePath);
-            if (!f.isFile()) {
-            throw new Exception(f +" 不是图片文件!");
+    @RequestMapping(value="/uploadImg")
+    public void uploadImg(@RequestParam("picFile") MultipartFile file,HttpServletRequest request, PrintWriter out) {
+    	Map<String,Object> result_map = new HashMap<String,Object>();
+        // 判断文件是否为空
+        if (!file.isEmpty()) {
+            try {
+                // 保存的文件路径(如果用的是Tomcat服务器，文件会上传到\\%TOMCAT_HOME%\\webapps\\YourWebProject\\upload\\文件夹中  )
+                String filePath = request.getSession().getServletContext()
+                    .getRealPath("/") + "upload/" + file.getOriginalFilename();
+                File saveDir = new File(filePath);
+                if (!saveDir.getParentFile().exists()){
+                    saveDir.getParentFile().mkdirs();
+                }
+                // 转存文件
+                file.transferTo(saveDir);
+                result_map.put("success", true);
+                result_map.put("data", filePath);
+            } catch (Exception e) {
+                e.printStackTrace();
+                result_map.put("success", false);
+            }
         }
-         if (f != null && f.exists()) {          //这里的ImageIO属于java工厂类，在工厂类class里面，调用的System.gc()，频繁调用会造成dump，需要考虑优化
-            BufferedImage image = ImageIO.read(f); // 读入文件
-            if (image != null) {
-            BufferedImage tag = new BufferedImage(image.getWidth(), image.getHeight(), BufferedImage.TYPE_INT_RGB);  //构造一个类型为预定义图像类型之一的 BufferedImage
-               tag.getGraphics().drawImage(image, 0, 0, image.getWidth(), image.getHeight(), null);                     //绘制所需要尺寸大小的图片
-            /*
-             * 以下生成图片上传后在服务器上的新路径
-             */
-            int lastLength = filePath.lastIndexOf(".");
-            Date date = new Date(System.currentTimeMillis());
-            String strDate = new SimpleDateFormat("yyyyMMddhhmmss").format(date);
-            int random = (int)(Math.random()*99);
-            String imageName = strDate+random;                          //以系统时间来随机的创建图片文件名
-            String fileType = filePath.substring(lastLength);              //获取上传图片的类型
-            resultPath = serverPath+"site"+imageName+fileType;
-            /*
-             * 进行图片的绘制
-             */
-            out = new FileOutputStream(resultPath);
-            JPEGImageEncoder encoder = JPEGCodec.createJPEGEncoder(out);
-            JPEGEncodeParam param = encoder.getDefaultJPEGEncodeParam(tag);
-            param.setQuality(0.95f, true); //95%图像      
-            param.setDensityUnit(1);                //像素尺寸单位.像素/英寸    
-            param.setXDensity(300);                  //水平分辨率      
-            param.setYDensity(300);                 //垂直分辨率
-            encoder.setJPEGEncodeParam(param);
-            encoder.encode(tag);
-            tag = null;
-          }
-         }
-
-         f = null;
-
-        } catch (Exception ex) {
-         ex.printStackTrace();
-        } finally {
-         out.close();
-         out = null;
-        }
-        return resultPath;
-       }
+        out.write(JsonUtil.jsonObject(result_map, null, null));
+        out.flush();
+        out.close();
+    }
 }

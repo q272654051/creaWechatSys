@@ -96,6 +96,68 @@ public class RelationController {
     }
     
     /**
+     * 首次关注关联回复信息
+     * @param request
+     * @param response
+     * @param printWriter
+     */
+    @RequestMapping("/relationFirst")
+    public void relationFirst(HttpServletRequest request, HttpServletResponse response, PrintWriter printWriter){
+    	Map<String,Object> result_map = new HashMap<String,Object>();
+    	String massageId = request.getParameter("massageId");
+    	String keyWordId = request.getParameter("keyWordId");
+    	KeyLink keyLink = new KeyLink();
+//    	保证关键字对应唯一
+    	/*List<KeyLink> keyLinkList = keyLinkService.findKeyLinkBykeyWordId("shouciguanzhuid");
+    	if (keyLinkList.size() > 0){
+        	keyLink = keyLinkList.get(0);
+        	keyLink.setMassageId(ListId);
+        } else {
+        	keyLink.setId(UUID.randomUUID()+"");
+        	keyLink.setKeyWordId("shouciguanzhuid");
+        	keyLink.setMassageId(ListId);
+        }*/
+//    	关键字可以对应多个
+    	keyLink.setId(UUID.randomUUID()+"");
+    	keyLink.setKeyWordId(keyWordId);
+    	keyLink.setMassageId(massageId);
+    	boolean bon = keyLinkService.saveupdateKeyLink(keyLink);
+    	result_map.put("success", bon);
+    	
+        printWriter.print(JsonUtil.jsonObject(result_map, null, null));
+        printWriter.flush();
+        printWriter.close();
+    }
+    
+    /**
+     * 首次关注取消关联回复信息
+     * @param request
+     * @param response
+     * @param printWriter
+     */
+    @RequestMapping("/deleteFirst")
+    public void deleteFirst(HttpServletRequest request, HttpServletResponse response, PrintWriter printWriter){
+    	Map<String,Object> result_map = new HashMap<String,Object>();
+    	String massageId = request.getParameter("massageId");
+    	String keyWordId = request.getParameter("keyWordId");
+    	KeyLink keyLink = new KeyLink();
+    	List<KeyLink> keyLinkList = keyLinkService.findKeyLinkBykeyWordId(keyWordId);
+    	for (int i=0;i<keyLinkList.size(); i++){
+    		String id = keyLinkList.get(i).getMassageId();
+    		if (id == massageId || massageId.equals(id)){
+    			keyLink = keyLinkList.get(i);
+    			break;
+    		}
+        }
+    	boolean bon = keyLinkService.deleteKeyLink(keyLink);
+    	result_map.put("success", bon);
+    	
+        printWriter.print(JsonUtil.jsonObject(result_map, null, null));
+        printWriter.flush();
+        printWriter.close();
+    }
+    	
+    /**
      * 加载关键字
      * @param request
      * @param response
@@ -104,8 +166,8 @@ public class RelationController {
     @RequestMapping("/loadKeyWord")
     public void loadKeyWord(HttpServletRequest request, HttpServletResponse response,PrintWriter printWriter){
         Map<String,Object> result_map = new HashMap<String,Object>();
-        Integer curPage = Integer.parseInt(request.getParameter("curPage"));
-        Integer pageSize = Integer.parseInt(request.getParameter("pageSize"));
+        Integer curPage = 1;
+        Integer pageSize = 2147483647;
         Pager pagers = new Pager(curPage, pageSize);
         Pager result = keyWordService.findBySQLQuery(pagers);
         result_map.put("data", result);
@@ -135,6 +197,7 @@ public class RelationController {
 
         Boolean bon = keyWordService.saveOrUpdate(keyWord);
         result_map.put("success", bon);
+        result_map.put("data", keyWord);
         printWriter.print(JsonUtil.jsonObject(result_map, null, null));
         printWriter.flush();
         printWriter.close();

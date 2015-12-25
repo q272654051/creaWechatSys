@@ -36,6 +36,11 @@ public class KeyLinkServiceImpl  extends BaseDao<KeyLink> implements IKeyLinkSer
     public boolean deleteKeyLinkById(Serializable id) {
         return this.deleteEntityById(id);
     }
+    //delete
+    @Transactional(readOnly=false,propagation=Propagation.REQUIRES_NEW)
+    public boolean deleteKeyLink(KeyLink entity) {
+    	return this.deleteEntity(entity);
+    }
     //update
     @Transactional(readOnly=false,propagation=Propagation.REQUIRES_NEW)
     public boolean updateKeyLink(KeyLink entity) {

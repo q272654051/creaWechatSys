@@ -44,7 +44,7 @@ public class FileUploadUtil {
 				request.getSession().getServletContext());
 		// request如果是Multipart类型、
 		if (mutilpartResolver.isMultipart(request)) {
-			// 强转成 MultipartHttpServletRequest
+			// 强转成 MultipartHttpServletRequest 
 			MultipartHttpServletRequest multiRequest = (MultipartHttpServletRequest) request;
 			String projectAddress = request.getRealPath("/");
 			// 获取文件名
@@ -155,25 +155,4 @@ public class FileUploadUtil {
 		}
 		return return_list;
 	}
-
-	
-	public static final String FILE_PATH = "/upload/";  
-	  
-    //文件上传  
-    public static String uploadFile(MultipartFile file, HttpServletRequest request) throws IOException {  
-        String fileName = file.getOriginalFilename();  
-        File tempFile = new File(FILE_PATH, new Date().getTime() + String.valueOf(fileName));  
-        if (!tempFile.getParentFile().exists()) {
-            tempFile.getParentFile().mkdir();  
-        }  
-        if (!tempFile.exists()) {
-            tempFile.createNewFile();  
-        }  
-        file.transferTo(tempFile);  
-        return "/download?fileName=" + tempFile.getName();  
-    }  
-  
-    public static File getFile(String fileName) {  
-        return new File(FILE_PATH, fileName);  
-    } 
 }

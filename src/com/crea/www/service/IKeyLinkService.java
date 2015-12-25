@@ -17,8 +17,10 @@ public interface IKeyLinkService extends IBaseDAO<KeyLink, Serializable>{
 	public boolean saveupdateKeyLink (KeyLink entity);
 	//删除
 	public boolean deleteKeyLinkById (Serializable id);
+	//删除
+	public boolean deleteKeyLink (KeyLink entity);
 	//修改
-	public boolean updateKeyLink (KeyLink id);
+	public boolean updateKeyLink (KeyLink entity);
 	
 	public KeyLink findKeyLinkById(Serializable id);
 	//查询
