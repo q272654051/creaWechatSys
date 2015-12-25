@@ -1,4 +1,4 @@
-function loadTextKey(curPage,keyWord){
+function loadTextKey(curPage,keyWordid){
     $.ajax({
     	   type: "post",
            url: "massageController/loadText",
@@ -19,7 +19,7 @@ function loadTextKey(curPage,keyWord){
 					                    url: "relationController/loadTextByKeyWord",
 					                    async:false,
 					                    data: {
-					                    	"keyWordId":keyWord
+					                    	"keyWordId":keyWordid
 					                    },
 					                    dataType: "json",
 					                    success: function(msg){
@@ -41,7 +41,7 @@ function loadTextKey(curPage,keyWord){
 					             });
 			            	id = id + 1;
 			            }
-			            pagerUtilTextKey(data.curPage, data.end, data.pageSize,
+			            pagerUtilTextKey(keyWordid,data.curPage, data.end, data.pageSize,
 			                    data.start, data.totalPage, data.totalRow);
 			            }else{
 			            	listTr.append("<tr><td colspan='3' class='text-center'>没有文本消息</td></tr>");
@@ -53,49 +53,49 @@ function loadTextKey(curPage,keyWord){
     });
 }
 
-function pagerUtilTextKey(curPage, end, pageSize, start, totalPage, totalRow) {
+function pagerUtilTextKey(keyWordid,curPage, end, pageSize, start, totalPage, totalRow) {
     var pageUL = $("#paginationListTextKey");
     pageUL.html("");
-    pageUL.append("<li><a href='javascript:;' onclick='upLoadTextKeyPage(" + curPage + ")' aria-label='Previous'><span aria-hidden='true'>&laquo;</span></a></li>");
+    pageUL.append("<li><a href='javascript:;' onclick='upLoadTextKeyPage(" + curPage + ','+keyWordid+")' aria-label='Previous'><span aria-hidden='true'>&laquo;</span></a></li>");
     //显示分页提示个数
     var Flag = 5;
     if (curPage <= 3) {
         if (totalPage < 5) {
             for (var j = 0; j < totalPage; j++) {
-                pageUL.append("<li id=" + (j + 1) + "><a href='javascript:;' onclick='loadTextKey(" + (j + 1) + ")'>" + (j + 1) + "</a></li>");
+                pageUL.append("<li id=" + (j + 1) + "><a href='javascript:;' onclick='loadTextKey(" + (j + 1) +','+keyWordid+ ")'>" + (j + 1) + "</a></li>");
             }
         } else {
             for (var j = 0; j < Flag; j++) {
-                pageUL.append("<li id=" + (j + 1) + "><a href='javascript:;' onclick='loadTextKey(" + (j + 1) + ")'>" + (j + 1) + "</a></li>");
+                pageUL.append("<li id=" + (j + 1) + "><a href='javascript:;' onclick='loadTextKey(" + (j + 1) +','+keyWordid+ ")'>" + (j + 1) + "</a></li>");
             }
         }
         colorFlag = curPage;
     } else if (curPage > totalPage - 3) {
         for (var j = totalPage - 5 >= 0 ? totalPage - 5 : totalPage - 4; j < totalPage; j++) {
-            pageUL.append("<li id=" + (j + 1) + "><a href='javascript:;' onclick='loadTextKey(" + (j + 1) + ")'>" + (j + 1) + "</a></li>");
+            pageUL.append("<li id=" + (j + 1) + "><a href='javascript:;' onclick='loadTextKey(" + (j + 1) +','+keyWordid+ ")'>" + (j + 1) + "</a></li>");
         }
         colorFlag = curPage;
     } else {
         for (var j = curPage - 2; j < curPage + 3; j++) {
-            pageUL.append("<li id=" + (j + 1) + "><a href='javascript:;' onclick='loadTextKey(" + j + ")'>" + j + "</a></li>");
+            pageUL.append("<li id=" + (j + 1) + "><a href='javascript:;' onclick='loadTextKey(" + j +','+keyWordid+ ")'>" + j + "</a></li>");
         }
         colorFlag = curPage + 1;
     }
-    pageUL.append("<li><a href='javascript:;' onclick='DownLoadTextKeyPage(" + curPage + ',' + totalPage + ")' aria-label='Next' ><span aria-hidden='true'>&raquo;</span></a></li>");
+    pageUL.append("<li><a href='javascript:;' onclick='DownLoadTextKeyPage(" + curPage + ',' + totalPage + ','+keyWordid+")' aria-label='Next' ><span aria-hidden='true'>&raquo;</span></a></li>");
     $('#' + colorFlag).addClass('active');
 }
 
-function upLoadTextKeyPage(curPage) {
+function upLoadTextKeyPage(curPage,keyWordid) {
     if (curPage > 1) {
         var startPage = curPage - 1;
-        loadTextKey(startPage);
+        loadTextKey(startPage,keyWordid);
     }
 }
 
-function DownLoadTextKeyPage(curPage, totalPage) {
+function DownLoadTextKeyPage(curPage, totalPage,keyWordid) {
     if (curPage < totalPage) {
         var endPage = curPage + 1;
-        loadTextKey(endPage);
+        loadTextKey(endPage,keyWordid);
     }
 }
 

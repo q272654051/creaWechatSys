@@ -1,4 +1,4 @@
-function loadArticleKey(curPage,keyWord){
+function loadArticleKey(curPage,keyWordid){
     $.ajax({
     	   type: "post",
            url: "massageController/loadArticle",
@@ -19,7 +19,7 @@ function loadArticleKey(curPage,keyWord){
 					                    url: "relationController/loadArticleByKeyWord",
 					                    async:false,
 					                    data: {
-					                    	"keyWordId":keyWord
+					                    	"keyWordId":keyWordid
 					                    },
 					                    dataType: "json",
 					                    success: function(msg){

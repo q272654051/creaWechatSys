@@ -544,8 +544,7 @@
                             * 数据无变化不提交
                             * */
                             if( sInput.value == oSpan.innerHTML ) return;
-                            console.log(sInput.value+":::::"+oSpan.innerHTML);
-                            /*$.ajax({
+                            $.ajax({
                                 type: 'post',
                                 url: 'relationController/saveOrupdateKeyWord',
                                 dataType: 'json',
@@ -557,7 +556,7 @@
                                 success: function(data) {
                                 },
                                 error: function() {}
-                            });*/
+                            });
                         });
                         break;
                     case 'key':
@@ -569,17 +568,7 @@
                                 renda.dom.removeClass(aItem[i],'btn-success active');
                             }
                             renda.dom.addClass(obj,'btn-success active');
-                            $.ajax({
-                                // 请求匹配数据列表
-                                type: 'get',
-                                url: '',
-                                dataType: 'json',
-                                async: false,
-                                success: function(data) {
-                                    // bind html
-                                },
-                                error: function() {}
-                            });
+                            loadTextKey(1,dataId);
                             alert( dataId );
                             
                         }
