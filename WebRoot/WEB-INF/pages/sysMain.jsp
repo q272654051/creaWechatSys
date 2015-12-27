@@ -59,7 +59,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <div class="row">
                     <div class="col-md-2 pic-upload">
                         <a class="thumbnail" id="preview">
-                            <img id="headpic" src="http://www.crea.com.cn/renda/Public/images/img2.jpg" alt="" width="250" height="150">
+                            <img id="headpic" src="http://www.crea.com.cn/renda/Public/images/logo.png" alt="" width="250" height="150">
                         </a>
                         <!-- <div class="form-group file-upload">
                              <input type="file" id="exampleInputFile">
@@ -135,11 +135,13 @@ $("#uploadImg").click(function() {
         url: "massageController/uploadImg",
         fileElementId: "exampleInputFile",
         secureuri: false,
-        dataType: "json",
-        success: function(data){
-        		$("#picUrl").val(data['data']);
+        dataType: "text",
+        success: function(data, status){
+        		var str = data.split(">")[1];
+        		str = str.split("<")[0];
+        		$("#picUrl").val(str);
         },
-        error: function(data){
+        error: function(data, status, e){
         	renda.tipMsg.config({width:300,type:'alert',msg:'系统异常，请稍后再试'});
         }
     });
