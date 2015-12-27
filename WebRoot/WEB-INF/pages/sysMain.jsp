@@ -64,15 +64,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         <!-- <div class="form-group file-upload">
                              <input type="file" id="exampleInputFile">
                         </div> -->
-                        <form id="picFileForm">
-                            <input type="file" id="exampleInputFile" name="picFile">
-                            <input type="button" id="uploadImg1" class="help-block" value="生成路径">
-                        </form>
-                        <form id= "uploadForm">  
-						      <p >指定文件名： <input type="text" name="filename" value= ""/></p >  
-						      <p >上传文件： <input type="file" name="file"/></p>  
-						      <input type="button" value="上传" id="uploadImg" />  
-						</form> 
+                            <input type="file" id="exampleInputFile" name="exampleInputFile">
+                            <input type="button" id="uploadImg" class="help-block" value="生成路径">
                         <input type="text" id="picUrl" class="form-control" placeholder="http://">
                         <!-- <p class="help-block">上传消息头图</p> -->
                     </div>
@@ -126,6 +119,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </div>
 <script type="text/javascript" src="content/js/jquery-1.9.1.js"></script>
 <script type="text/javascript" src="content/js/jquery.form.min.js"></script>
+<script type="text/javascript" src="content/js/ajaxfileupload.js"></script>
 <script type="text/javascript" src="content/framework/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="content/js/sys.js"></script>
 <script type="text/javascript" src="content/jsp/sysMain.js"></script>
@@ -133,29 +127,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 $(function(){
     loadArticle(1);
-})
+});
 
 $("#uploadImg").click(function() {
-	/* var fileObj = $("#picFileForm").files[0]; */
-	var formData = new FormData($("#uploadForm")[0]);
-	//formData.append("file", fileObj);
-	/* var formdata = new FormData();              
-    var fileObj = document.getElementById("fileToUpload2").files;              
-        for (var i = 0; i < fileObj.length; i++)                  
-        formdata.append("file" + i, fileObj[i]); */
-	$.ajax({
+	$.ajaxFileUpload({
 	    type: "post",
         url: "massageController/uploadImg",
-        data: formData,
+        fileElementId: "exampleInputFile",
+        secureuri: false,
         dataType: "json",
         success: function(data){
-        	
+        		$("#picUrl").val(data['data']);
         },
         error: function(data){
-        	alert("系统错误，请联系管理员");
+        	renda.tipMsg.config({width:300,type:'alert',msg:'系统异常，请稍后再试'});
         }
     });
-})
+});
 
 
 $("#saveArticle").click(function() {
@@ -178,14 +166,14 @@ $("#saveArticle").click(function() {
         dataType: "json",
         success: function(data){
         	if(data['success']=="添加成功"){
-        		alert("修改成功");
+        		renda.tipMsg.config({width:300,type:'alert',msg:'修改成功'});
         		window.location.href = "loginController/toSysMain";  //加载主页面
         	}else{
-        		alert("修改错误，请稍后再试");
+        		renda.tipMsg.config({width:300,type:'alert',msg:'修改错误，请稍后再试'});
         	}
         },
         error: function(data){
-        	alert("系统错误，请联系管理员");
+        	renda.tipMsg.config({width:300,type:'alert',msg:'系统错误，请稍后再试'});
         }
     });
 	

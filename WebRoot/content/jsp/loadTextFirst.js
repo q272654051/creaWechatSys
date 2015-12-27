@@ -62,27 +62,27 @@ function pagerUtilTextFirst(curPage, end, pageSize, start, totalPage, totalRow) 
     if (curPage <= 3) {
         if (totalPage < 5) {
             for (var j = 0; j < totalPage; j++) {
-                pageUL.append("<li id=" + (j + 1) + "><a href='javascript:;' onclick='loadTextFirst(" + (j + 1) + ")'>" + (j + 1) + "</a></li>");
+                pageUL.append("<li id='TextFirst" + (j + 1) + "'><a href='javascript:;' onclick='loadTextFirst(" + (j + 1) + ")'>" + (j + 1) + "</a></li>");
             }
         } else {
             for (var j = 0; j < Flag; j++) {
-                pageUL.append("<li id=" + (j + 1) + "><a href='javascript:;' onclick='loadTextFirst(" + (j + 1) + ")'>" + (j + 1) + "</a></li>");
+                pageUL.append("<li id='TextFirst" + (j + 1) + "'><a href='javascript:;' onclick='loadTextFirst(" + (j + 1) + ")'>" + (j + 1) + "</a></li>");
             }
         }
-        colorFlag = curPage;
+        colorFlagTextFirst = "TextFirst"+curPage;
     } else if (curPage > totalPage - 3) {
         for (var j = totalPage - 5 >= 0 ? totalPage - 5 : totalPage - 4; j < totalPage; j++) {
-            pageUL.append("<li id=" + (j + 1) + "><a href='javascript:;' onclick='loadTextFirst(" + (j + 1) + ")'>" + (j + 1) + "</a></li>");
+            pageUL.append("<li id='TextFirst" + (j + 1) + "'><a href='javascript:;' onclick='loadTextFirst(" + (j + 1) + ")'>" + (j + 1) + "</a></li>");
         }
-        colorFlag = curPage;
+        colorFlagTextFirst = "TextFirst"+curPage;
     } else {
         for (var j = curPage - 2; j < curPage + 3; j++) {
-            pageUL.append("<li id=" + (j + 1) + "><a href='javascript:;' onclick='loadTextFirst(" + j + ")'>" + j + "</a></li>");
+            pageUL.append("<li id='TextFirst" + (j + 1) + "'><a href='javascript:;' onclick='loadTextFirst(" + j + ")'>" + j + "</a></li>");
         }
-        colorFlag = curPage + 1;
+        colorFlagTextFirst = "TextFirst"+curPage + 1;
     }
     pageUL.append("<li><a href='javascript:;' onclick='DownLoadTextFirstPage(" + curPage + ',' + totalPage + ")' aria-label='Next' ><span aria-hidden='true'>&raquo;</span></a></li>");
-    $('#' + colorFlag).addClass('active');
+    $('#' + colorFlagTextFirst).addClass('active');
 }
 
 function upLoadTextFirstPage(curPage) {

@@ -9,6 +9,7 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
@@ -21,6 +22,7 @@ import java.util.UUID;
 
 import javax.annotation.Resource;
 import javax.imageio.ImageIO;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -28,7 +30,10 @@ import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 import org.apache.commons.fileupload.DiskFileUpload;
+import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Controller;
@@ -217,29 +222,43 @@ public class MassageController {
      * @return
      */
     @RequestMapping(value="/uploadImg")
-    public void uploadImg(@RequestParam("picFile") MultipartFile file,HttpServletRequest request, PrintWriter out) {
+    public void uploadImg(@RequestParam(value = "exampleInputFile") MultipartFile file,HttpServletRequest request, PrintWriter out) {
     	Map<String,Object> result_map = new HashMap<String,Object>();
         // 判断文件是否为空
         if (!file.isEmpty()) {
             try {
                 // 保存的文件路径(如果用的是Tomcat服务器，文件会上传到\\%TOMCAT_HOME%\\webapps\\YourWebProject\\upload\\文件夹中  )
                 String filePath = request.getSession().getServletContext()
-                    .getRealPath("/") + "upload/" + file.getOriginalFilename();
-                File saveDir = new File(filePath);
-                if (!saveDir.getParentFile().exists()){
-                    saveDir.getParentFile().mkdirs();
-                }
+                    .getRealPath("/") + "upload/";
+                // 文件原名称
+    			String originFileName = file.getOriginalFilename();
+    			Date date = new Date();
+    			//当前时间
+    			String time = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(date);
+    			String fileName = time+originFileName;
+//                File saveDir = new File(filePath);
+//                if (!saveDir.getParentFile().exists()){
+//                    saveDir.getParentFile().mkdirs();
+//                }
                 // 转存文件
-                file.transferTo(saveDir);
+//                file.transferTo(saveDir);
+              //这里使用Apache的FileUtils方法来进行保存
+				FileUtils.copyInputStreamToFile(file.getInputStream(),
+						new File(filePath, fileName));
                 result_map.put("success", true);
                 result_map.put("data", filePath);
             } catch (Exception e) {
                 e.printStackTrace();
                 result_map.put("success", false);
+                result_map.put("data", "http://");
             }
+        }else{
+        	result_map.put("success", false);
+            result_map.put("data", "http://");
         }
         out.write(JsonUtil.jsonObject(result_map, null, null));
         out.flush();
         out.close();
     }
+    
 }

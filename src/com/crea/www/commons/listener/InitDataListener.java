@@ -24,7 +24,7 @@ public class InitDataListener implements InitializingBean, ServletContextAware{
     @Override
     public void setServletContext(ServletContext context) {
         //获取所有用户
-        Map<String,User> user_map = new HashMap<String,User>();
+       /* Map<String,User> user_map = new HashMap<String,User>();
         Map<String,User> userId_map = new HashMap<String,User>();
         List<User> user_list = userService.findByHQLQuery("from User");
         for(User user : user_list){
@@ -33,7 +33,7 @@ public class InitDataListener implements InitializingBean, ServletContextAware{
         }
         context.setAttribute("user_map", user_map);
         context.setAttribute("userId_map", userId_map);
-        context.setAttribute("user_list", user_list);
+        context.setAttribute("user_list", user_list);*/
         
     }
     

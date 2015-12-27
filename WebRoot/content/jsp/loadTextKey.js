@@ -24,10 +24,17 @@ function loadTextKey(curPage,keyWordid){
 					                    dataType: "json",
 					                    success: function(msg){
 					                            var data1 = eval(msg['data']);
-					                            listTr.append("<tr><td><input type='checkbox'/></td><th scope='row'>" + id + "</th><td>" + data.list[i].content
-					                            		+ "</td><td>" 
-					                            		+ '<a href="javascript:void(0)" id="relatetextkey'+data.list[i].id+'" onclick="relateTextKey('+ "'" + data.list[i].id + "'" +')" class="btn btn-sm btn-info">设置关联<span id="relatetextkeySpan'+data.list[i].id+'" class="glyphicon glyphicon-cog"></span></a>'
-					                            		+ '<a href="javascript:void(0)" id="deletetextkey'+data.list[i].id+'" onclick="deleteTextKey('+ "'" + data.list[i].id + "'" +')"class="btn btn-sm btn-default disabled">取消关联</a></td></tr>');
+					                            if(keyWordid=="" || keyWordid==undefined){
+					                            	listTr.append("<tr><<th scope='row'>" + id + "</th><td>" + data.list[i].content
+					                            			+ "</td><td>" 
+					                            			+ '<a href="javascript:void(0)" id="relatetextkey'+data.list[i].id+'" onclick="relateKey('+ "'" + data.list[i].id + "'" +')" class="btn btn-sm btn-info disabled">设置关联<span id="relatetextkeySpan'+data.list[i].id+'" class="glyphicon glyphicon-cog"></span></a>'
+					                            			+ '<a href="javascript:void(0)" id="deletetextkey'+data.list[i].id+'" onclick="deleteKey('+ "'" + data.list[i].id + "'" +')"class="btn btn-sm btn-default disabled">取消关联</a></td></tr>');
+					                            }else{
+					                            	listTr.append("<tr><th scope='row'>" + id + "</th><td>" + data.list[i].content
+					                            			+ "</td><td>" 
+					                            			+ '<a href="javascript:void(0)" id="relatetextkey'+data.list[i].id+'" onclick="relateKey('+ "'" + data.list[i].id + "','"+keyWordid+"'" +')" class="btn btn-sm btn-info">设置关联<span id="relatetextkeySpan'+data.list[i].id+'" class="glyphicon glyphicon-cog"></span></a>'
+					                            			+ '<a href="javascript:void(0)" id="deletetextkey'+data.list[i].id+'" onclick="deleteKey('+ "'" + data.list[i].id + "','"+keyWordid+"'" +')"class="btn btn-sm btn-default disabled">取消关联</a></td></tr>');
+					                            }
 					         			            for (var j = 0; j < data1.length; j++) {
 					         			            	if (data.list[i].id==data1[j]){
 					         			            		$("#relatetextkey"+data.list[i].id).removeClass("btn-info").addClass("btn-success disabled").html('关联成功<span class="glyphicon glyphicon-ok"></span>');
@@ -56,33 +63,63 @@ function loadTextKey(curPage,keyWordid){
 function pagerUtilTextKey(keyWordid,curPage, end, pageSize, start, totalPage, totalRow) {
     var pageUL = $("#paginationListTextKey");
     pageUL.html("");
-    pageUL.append("<li><a href='javascript:;' onclick='upLoadTextKeyPage(" + curPage + ','+keyWordid+")' aria-label='Previous'><span aria-hidden='true'>&laquo;</span></a></li>");
-    //显示分页提示个数
-    var Flag = 5;
-    if (curPage <= 3) {
-        if (totalPage < 5) {
-            for (var j = 0; j < totalPage; j++) {
-                pageUL.append("<li id=" + (j + 1) + "><a href='javascript:;' onclick='loadTextKey(" + (j + 1) +','+keyWordid+ ")'>" + (j + 1) + "</a></li>");
-            }
-        } else {
-            for (var j = 0; j < Flag; j++) {
-                pageUL.append("<li id=" + (j + 1) + "><a href='javascript:;' onclick='loadTextKey(" + (j + 1) +','+keyWordid+ ")'>" + (j + 1) + "</a></li>");
-            }
-        }
-        colorFlag = curPage;
-    } else if (curPage > totalPage - 3) {
-        for (var j = totalPage - 5 >= 0 ? totalPage - 5 : totalPage - 4; j < totalPage; j++) {
-            pageUL.append("<li id=" + (j + 1) + "><a href='javascript:;' onclick='loadTextKey(" + (j + 1) +','+keyWordid+ ")'>" + (j + 1) + "</a></li>");
-        }
-        colorFlag = curPage;
-    } else {
-        for (var j = curPage - 2; j < curPage + 3; j++) {
-            pageUL.append("<li id=" + (j + 1) + "><a href='javascript:;' onclick='loadTextKey(" + j +','+keyWordid+ ")'>" + j + "</a></li>");
-        }
-        colorFlag = curPage + 1;
+    if(keyWordid=="" || keyWordid==undefined){
+    	pageUL.append("<li><a href='javascript:;' onclick='upLoadTextKeyPage(" + curPage + ")' aria-label='Previous'><span aria-hidden='true'>&laquo;</span></a></li>");
+    	//显示分页提示个数
+    	var Flag = 5;
+    	if (curPage <= 3) {
+    		if (totalPage < 5) {
+    			for (var j = 0; j < totalPage; j++) {
+    				pageUL.append("<li id='TextKey" + (j + 1) + "'><a href='javascript:;' onclick='loadTextKey(" + (j + 1) + ")'>" + (j + 1) + "</a></li>");
+    			}
+    		} else {
+    			for (var j = 0; j < Flag; j++) {
+    				pageUL.append("<li id='TextKey" + (j + 1) + "'><a href='javascript:;' onclick='loadTextKey(" + (j + 1) + ")'>" + (j + 1) + "</a></li>");
+    			}
+    		}
+    		colorFlagTextKey = "TextKey"+curPage;
+    	} else if (curPage > totalPage - 3) {
+    		for (var j = totalPage - 5 >= 0 ? totalPage - 5 : totalPage - 4; j < totalPage; j++) {
+    			pageUL.append("<li id='TextKey" + (j + 1) + "'><a href='javascript:;' onclick='loadTextKey(" + (j + 1) + ")'>" + (j + 1) + "</a></li>");
+    		}
+    		colorFlagTextKey = "TextKey"+curPage;
+    	} else {
+    		for (var j = curPage - 2; j < curPage + 3; j++) {
+    			pageUL.append("<li id='TextKey" + (j + 1) + "'><a href='javascript:;' onclick='loadTextKey(" + j + ")'>" + j + "</a></li>");
+    		}
+    		colorFlagTextKey = "TextKey"+curPage + 1;
+    	}
+    	pageUL.append("<li><a href='javascript:;' onclick='DownLoadTextKeyPage(" + curPage + ',' + totalPage + ")' aria-label='Next' ><span aria-hidden='true'>&raquo;</span></a></li>");
+    	$('#' + colorFlagTextKey).addClass('active');
+    }else{
+    	pageUL.append("<li><a href='javascript:;' onclick='upLoadTextKeyPage(" + curPage + ',"'+ keyWordid+'"' + ")' aria-label='Previous'><span aria-hidden='true'>&laquo;</span></a></li>");
+    	//显示分页提示个数
+    	var Flag = 5;
+    	if (curPage <= 3) {
+    		if (totalPage < 5) {
+    			for (var j = 0; j < totalPage; j++) {
+    				pageUL.append("<li id='TextKey" + (j + 1) + "'><a href='javascript:;' onclick='loadTextKey(" + (j + 1) + ',"'+keyWordid+'"'+ ")'>" + (j + 1) + "</a></li>");
+    			}
+    		} else {
+    			for (var j = 0; j < Flag; j++) {
+    				pageUL.append("<li id='TextKey" + (j + 1) + "'><a href='javascript:;' onclick='loadTextKey(" + (j + 1) + ',"'+keyWordid+'"'+ ")'>" + (j + 1) + "</a></li>");
+    			}
+    		}
+    		colorFlagTextKey = "TextKey"+curPage;
+    	} else if (curPage > totalPage - 3) {
+    		for (var j = totalPage - 5 >= 0 ? totalPage - 5 : totalPage - 4; j < totalPage; j++) {
+    			pageUL.append("<li id='TextKey" + (j + 1) + "'><a href='javascript:;' onclick='loadTextKey(" + (j + 1) + ',"'+keyWordid+'"'+ ")'>" + (j + 1) + "</a></li>");
+    		}
+    		colorFlagTextKey = "TextKey"+curPage;
+    	} else {
+    		for (var j = curPage - 2; j < curPage + 3; j++) {
+    			pageUL.append("<li id='TextKey" + (j + 1) + "'><a href='javascript:;' onclick='loadTextKey(" + j + ',"'+keyWordid+'"'+ ")'>" + j + "</a></li>");
+    		}
+    		colorFlagTextKey = "TextKey"+curPage + 1;
+    	}
+    	pageUL.append("<li><a href='javascript:;' onclick='DownLoadTextKeyPage(" + curPage + "," + totalPage + ',"'+keyWordid+'"'+ ")' aria-label='Next' ><span aria-hidden='true'>&raquo;</span></a></li>");
+    	$('#' + colorFlagTextKey).addClass('active');
     }
-    pageUL.append("<li><a href='javascript:;' onclick='DownLoadTextKeyPage(" + curPage + ',' + totalPage + ','+keyWordid+")' aria-label='Next' ><span aria-hidden='true'>&raquo;</span></a></li>");
-    $('#' + colorFlag).addClass('active');
 }
 
 function upLoadTextKeyPage(curPage,keyWordid) {
@@ -99,58 +136,50 @@ function DownLoadTextKeyPage(curPage, totalPage,keyWordid) {
     }
 }
 
-function deleteText(id){
-	flag = window.confirm("确定要删除该信息？");
-	if (flag){
-		$.ajax({
-		    type: "post",
-	        url: "massageController/deleteText",
-	        async:false,
-	        data: {
-	            "id":id
-	        },
-	        dataType: "json",
-	        success: function(data){
-	        	if(data['success']){
-	        		window.location.href = "loginController/toCreateTextInfo";  //加载主页面
-	        	}else{
-	        		alert("删除错误，请稍后再试");
-	        	}
-	        },
-	        error: function(data){
-	        	alert("系统错误，请联系管理员");
-	        }
-	    });
-	}else{
-		return false;
-	}
+function deleteKey(id,keyWordId){
+	$.ajax({
+	    type: "post",
+        url: "relationController/deleteFirst",
+        async:false,
+        data: {
+            "massageId":id,
+            "keyWordId":keyWordId
+        },
+        dataType: "json",
+        success: function(data){
+        	if(data['success']){
+        		loadTextKey(1,keyWordId);
+        		loadArticleKey(1,keyWordId);
+        	}else{
+        		renda.tipMsg.config({width:300,type:'alert',msg:'取消关联失败，请稍后再试'});
+        	}
+        },
+        error: function(data){
+        	renda.tipMsg.config({width:300,type:'alert',msg:'取消关联失败，请稍后再试'});
+        }
+    });
 }
 
-function editText(id){
-	var content = prompt("请输入新的消息:","");
-	if (content != null){
-		$.ajax({
-		    type: "post",
-	        url: "massageController/saveOrupdateText",
-	        async:false,
-	        data: {
-	            "id":id,
-	            "content":content
-	        },
-	        dataType: "json",
-	        success: function(data){
-	        	if(data['success']=="添加成功"){
-	        		alert("修改成功");
-	        		window.location.href = "loginController/toCreateTextInfo";  //加载主页面
-	        	}else{
-	        		alert("修改错误，请稍后再试");
-	        	}
-	        },
-	        error: function(data){
-	        	alert("系统错误，请联系管理员");
-	        }
-	    });
-	}else {
-		return false;
-	}
+function relateKey(id,keyWordId){
+	$.ajax({
+	    type: "post",
+        url: "relationController/relationFirst",
+        async:false,
+        data: {
+            "massageId":id,
+            "keyWordId":keyWordId
+        },
+        dataType: "json",
+        success: function(data){
+        	if(data['success']){
+        		loadTextKey(1,keyWordId);
+        		loadArticleKey(1,keyWordId);
+        	}else{
+        		renda.tipMsg.config({width:300,type:'alert',msg:'设置关联失败，请稍后再试'});
+        	}
+        },
+        error: function(data){
+        	renda.tipMsg.config({width:300,type:'alert',msg:'设置关联失败，请稍后再试'});
+        }
+    });
 }

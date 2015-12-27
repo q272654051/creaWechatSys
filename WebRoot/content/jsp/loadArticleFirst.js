@@ -66,27 +66,27 @@ function pagerUtilArticleFirst(curPage, end, pageSize, start, totalPage, totalRo
     if (curPage <= 3) {
         if (totalPage < 5) {
             for (var j = 0; j < totalPage; j++) {
-                pageUL.append("<li id=" + (j + 1) + "><a href='javascript:;' onclick='loadArticleFirst(" + (j + 1) + ")'>" + (j + 1) + "</a></li>");
+                pageUL.append("<li id='ArticleFirst" + (j + 1) + "'><a href='javascript:;' onclick='loadArticleFirst(" + (j + 1) + ")'>" + (j + 1) + "</a></li>");
             }
         } else {
             for (var j = 0; j < Flag; j++) {
-                pageUL.append("<li id=" + (j + 1) + "><a href='javascript:;' onclick='loadArticleFirst(" + (j + 1) + ")'>" + (j + 1) + "</a></li>");
+                pageUL.append("<li id='ArticleFirst" + (j + 1) + "'><a href='javascript:;' onclick='loadArticleFirst(" + (j + 1) + ")'>" + (j + 1) + "</a></li>");
             }
         }
-        colorFlag = curPage;
+        colorFlagArticleFirst = "ArticleFirst"+curPage;
     } else if (curPage > totalPage - 3) {
         for (var j = totalPage - 5 >= 0 ? totalPage - 5 : totalPage - 4; j < totalPage; j++) {
-            pageUL.append("<li id=" + (j + 1) + "><a href='javascript:;' onclick='loadArticleFirst(" + (j + 1) + ")'>" + (j + 1) + "</a></li>");
+            pageUL.append("<li id='ArticleFirst" + (j + 1) + "'><a href='javascript:;' onclick='loadArticleFirst(" + (j + 1) + ")'>" + (j + 1) + "</a></li>");
         }
-        colorFlag = curPage;
+        colorFlagArticleFirst = "ArticleFirst"+curPage;
     } else {
         for (var j = curPage - 2; j < curPage + 3; j++) {
-            pageUL.append("<li id=" + (j + 1) + "><a href='javascript:;' onclick='loadArticleFirst(" + j + ")'>" + j + "</a></li>");
+            pageUL.append("<li id='ArticleFirst" + (j + 1) + "'><a href='javascript:;' onclick='loadArticleFirst(" + j + ")'>" + j + "</a></li>");
         }
-        colorFlag = curPage + 1;
+        colorFlagArticleFirst = "ArticleFirst"+curPage + 1;
     }
     pageUL.append("<li><a href='javascript:;' onclick='DownLoadArticleFirstPage(" + curPage + ',' + totalPage + ")' aria-label='Next' ><span aria-hidden='true'>&raquo;</span></a></li>");
-    $('#' + colorFlag).addClass('active');
+    $('#' + colorFlagArticleFirst).addClass('active');
 }
 
 function upLoadArticleFirstPage(curPage) {

@@ -294,14 +294,13 @@
                     dataType: "json",
                     success: function(data){
                     	if(data['success']){
-                    		alert(data['msg']);
+                    		renda.tipMsg.config({width:300,type:'alert',msg:data['msg']});
                             window.location.href = "loginController/toSysMain";  //加载主页面
                     	}else{
-                    		alert(data['msg']);
+                    		renda.tipMsg.config({width:300,type:'alert',msg:data['msg']});
                     	}
                     },
                     error: function(data){
-                    	alert(data['msg']);
                     }
             	});
 
@@ -330,14 +329,14 @@
                     dataType: "json",
                     success: function(data){
                     	if(data['success']){
-                    		alert(data['msg']);
+                    		renda.tipMsg.config({width:300,type:'alert',msg:data['msg']});
                             window.location.href = "loginController/toSysMain";  //加载主页面
                     	}else{
-                    		alert(data['msg']);
+                    		renda.tipMsg.config({width:300,type:'alert',msg:data['msg']});
                     	}
                     },
                     error: function(data){
-                    	alert(data['msg']);
+                    	renda.tipMsg.config({width:300,type:'alert',msg:data['msg']});
                     }
             	});
 
@@ -569,8 +568,6 @@
                             }
                             renda.dom.addClass(obj,'btn-success active');
                             loadTextKey(1,dataId);
-                            alert( dataId );
-                            
                         }
                         break;
                     default:
@@ -631,7 +628,6 @@
         	            }
         	         },
         	         error: function(data){
-        	             alert("系统错误，请联系管理员");
         	         }
         	  });
         }

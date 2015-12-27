@@ -196,43 +196,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             <div class="form-group">
                                 <div class="text-info edit-key" id="keywordsList">
 
-
-                                    <div class="btn btn-default key-item">
-                                        <div data-id="1" class="input-group" title="显示关键词显示关键词显示关键词显示关键词显示关键词显示关键词">
-                                            <span class="key">显示关键词显示关键词显示关键词显示关键词显示关键词显示关键词</span>
-                                            <span class="glyphicon glyphicon-remove" title="删除"></span>
-                                            <span class="glyphicon glyphicon-edit" title="编辑"></span>
-                                        </div>
-                                    </div>
-
-                                    <div class="btn btn-default key-item">
-                                        <!--<div data-id="1" class="input-group" title="显示关键词显示关键词显示关键词显示关键词显示关键词显示关键词">
-                                            <input class="form-control" style="width: 420px" type="text" value="显示关键词显示关键词显示关键词显示关键词显示关键词显示关键词"/>
-                                            <span class="input-group-btn">
-                                                <button class="btn btn-default">保存</button>
-                                            </span>
-                                        </div>-->
-                                        <div data-id="1" class="input-group" title="显示关键词显示关键词显示关键词显示关键词显示关键词显示关键词">
-                                            <span class="key">显示关键词显示关键词显示关键词显示关键词显示关键词显示关键词</span>
-                                            <span class="glyphicon glyphicon-remove" title="删除"></span>
-                                            <span class="glyphicon glyphicon-edit" title="编辑"></span>
-                                        </div>
-                                    </div>
-
-                                    <div class="btn btn-default key-item">
-                                        <!--<div data-id="1" class="input-group" title="显示关键词显示关键词显示关键词显示关键词显示关键词显示关键词">
-                                            <input class="form-control" style="width: 420px" type="text" value="显示关键词显示关键词显示关键词显示关键词显示关键词显示关键词"/>
-                                            <span class="input-group-btn">
-                                                <button class="btn btn-default">保存</button>
-                                            </span>
-                                        </div>-->
-                                        <div data-id="1" class="input-group" title="显示关键词显示关键词显示关键词显示关键词显示关键词显示关键词">
-                                            <span class="key">显示关键词显示关键词显示关键词显示关键词显示关键词显示关键词</span>
-                                            <span class="glyphicon glyphicon-remove" title="删除"></span>
-                                            <span class="glyphicon glyphicon-edit" title="编辑"></span>
-                                        </div>
-                                    </div>
-
                                 </div>
 
                             </div>
@@ -255,16 +218,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
                         <div class="tab-content keypanel">
                             <div class="tab-pane fade in active" id="keyTextInfo">
-                                <div class="tab-head btn-block">
+                                <!-- <div class="tab-head btn-block">
                                     <button class="btn btn-info btn-sm"><span class="glyphicon glyphicon-cog"></span> 设置关联</button>
                                     <button class="btn btn-default btn-sm"><span class="glyphicon glyphicon-th"></span> 取消关联</button>
-                                </div>
+                                </div> -->
                                 <table class="table table-striped table-info">
                                     <thead>
                                     <tr>
-                                        <th>
+                                        <!-- <th>
                                             <label><input type="checkbox"/>全选</label>
-                                        </th>
+                                        </th> -->
                                         <th>id</th>
                                         <th>描述内容</th>
                                         <th>状态/操作</th>
@@ -280,16 +243,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
                             </div>
                             <div class="tab-pane fade" id="keyPicInfo">
-                                <div class="tab-head btn-block">
+                                <!-- <div class="tab-head btn-block">
                                     <button class="btn btn-info btn-sm"><span class="glyphicon glyphicon-cog"></span> 设置关联</button>
                                     <button class="btn btn-default btn-sm"><span class="glyphicon glyphicon-th"></span> 取消关联</button>
-                                </div>
+                                </div> -->
                                 <table class="table table-striped table-info">
                                     <thead>
                                     <tr>
-                                        <th>
+                                        <!-- <th>
                                             <label><input type="checkbox"/>全选</label>
-                                        </th>
+                                        </th> -->
                                         <th>id</th>
                                         <th>消息头图</th>
                                         <th>标题</th>

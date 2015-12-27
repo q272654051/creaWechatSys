@@ -86,11 +86,12 @@ public class ReplyController {
         KeyLink keyLink = new KeyLink();
         JSONObject json = new JSONObject();
         JSONArray jsonArray = new JSONArray();
-        String keyWords = request.getParameter("keyWord");  //获取关键字，首次关注关键字为shouciguanzhiguanjianzi;
-        List<KeyWord> keyWordList = keyWordService.findListByKeyWord(keyWords);
-        if (keyWordList.size() > 0){
-        	keyWord = keyWordList.get(0);
+//        String keyWords = request.getParameter("keyWord");  //获取关键字，首次关注关键字为shouciguanzhiguanjianzi;
+        List<KeyWord> keyWordList = keyWordService.findAllKeyWord();
+        for (int j=0;j<keyWordList.size();j++){
+        	keyWord = keyWordList.get(j);
         	String keyWordId = keyWord.getId();//根据关键字获取关键字对应的id
+        	String keyWords = keyWord.getKeyWord();
         	List<KeyLink> keyLinkList = keyLinkService.findKeyLinkBykeyWordId(keyWordId);//通过id获取连接表中的消息id
         	if (keyLinkList.size() > 0){
         		for (int i=0; i<keyLinkList.size(); i++){
@@ -100,6 +101,8 @@ public class ReplyController {
         			article = articleService.findById(massageId);
         			if (text != null){
         				String content = text.getContent();
+        				json.put("keyWord", keyWords);
+        				json.put("type", 0);
         				json.put("content", content);
         			} else {
         				json.put("content", "");
@@ -109,6 +112,8 @@ public class ReplyController {
         				String description = article.getDescription();
         				String picUrl = article.getPicUrl();
         				String url = article.getUrl();
+        				json.put("keyWord", keyWords);
+        				json.put("type", 1);
         				json.put("title", title);
         				json.put("description", description);
         				json.put("picUrl", picUrl);
@@ -122,44 +127,45 @@ public class ReplyController {
         			jsonArray.add(json);
         		}
         	}
-        } else {
-        	keyWordList = keyWordService.findListByKeyWord("morenhuifu");
-        	if (keyWordList.size()>0){
-        		keyWord = keyWordList.get(0);
-        		String keyWordId = keyWord.getId();//根据关键字获取关键字对应的id
-        		List<KeyLink> keyLinkList = keyLinkService.findKeyLinkBykeyWordId(keyWordId);//通过id获取连接表中的消息id
-        		if (keyLinkList.size() > 0){
-        			for (int i=0; i<keyLinkList.size(); i++){
-        				keyLink = keyLinkList.get(i);
-        				String massageId = keyLink.getMassageId();
-        				text = textService.findById(massageId);
-        				article = articleService.findById(massageId);
-        				if (text != null){
-        					String content = text.getContent();
-        					json.put("content", content);
-        				} else {
-        					json.put("content", "");
-        				}
-        				if (article != null){
-        					String title = article.getTitle();
-        					String description = article.getDescription();
-        					String picUrl = article.getPicUrl();
-        					String url = article.getUrl();
-        					json.put("title", title);
-        					json.put("description", description);
-        					json.put("picUrl", picUrl);
-        					json.put("url", url);
-        				} else {
-        					json.put("title", "");
-        					json.put("description", "");
-        					json.put("picUrl", "");
-        					json.put("url", "");
-        				}
-        				jsonArray.add(json);
-        			}
-        		}
-        	}
-        }
+        } 
+//        else {
+//        	keyWordList = keyWordService.findListByKeyWord("morenhuifuguanjianzi");
+//        	if (keyWordList.size()>0){
+//        		keyWord = keyWordList.get(0);
+//        		String keyWordId = keyWord.getId();//根据关键字获取关键字对应的id
+//        		List<KeyLink> keyLinkList = keyLinkService.findKeyLinkBykeyWordId(keyWordId);//通过id获取连接表中的消息id
+//        		if (keyLinkList.size() > 0){
+//        			for (int i=0; i<keyLinkList.size(); i++){
+//        				keyLink = keyLinkList.get(i);
+//        				String massageId = keyLink.getMassageId();
+//        				text = textService.findById(massageId);
+//        				article = articleService.findById(massageId);
+//        				if (text != null){
+//        					String content = text.getContent();
+//        					json.put("content", content);
+//        				} else {
+//        					json.put("content", "");
+//        				}
+//        				if (article != null){
+//        					String title = article.getTitle();
+//        					String description = article.getDescription();
+//        					String picUrl = article.getPicUrl();
+//        					String url = article.getUrl();
+//        					json.put("title", title);
+//        					json.put("description", description);
+//        					json.put("picUrl", picUrl);
+//        					json.put("url", url);
+//        				} else {
+//        					json.put("title", "");
+//        					json.put("description", "");
+//        					json.put("picUrl", "");
+//        					json.put("url", "");
+//        				}
+//        				jsonArray.add(json);
+//        			}
+//        		}
+//        	}
+//        }
         printWriter.print(jsonArray);
         printWriter.flush();
         printWriter.close();
