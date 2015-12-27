@@ -56,7 +56,7 @@ function loadArticleKey(curPage,keyWordid){
 					             });
 			            	id = id + 1;
 			            }
-			            pagerUtilArticleKey(data.curPage, data.end, data.pageSize,
+			            pagerUtilArticleKey(keyWordid,data.curPage, data.end, data.pageSize,
 			                    data.start, data.totalPage, data.totalRow);
 			            }else{
 			            	listTr.append("<tr><td colspan='6' class='text-center'>没有图文消息</td></tr>");
@@ -68,7 +68,7 @@ function loadArticleKey(curPage,keyWordid){
     });
 }
 
-function pagerUtilArticleKey(curPage, end, pageSize, start, totalPage, totalRow) {
+function pagerUtilArticleKey(keyWordid,curPage, end, pageSize, start, totalPage, totalRow) {
     var pageUL = $("#paginationListArticleKey");
     pageUL.html("");
     if(keyWordid=="" || keyWordid==undefined){

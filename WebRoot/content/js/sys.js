@@ -568,6 +568,7 @@
                             }
                             renda.dom.addClass(obj,'btn-success active');
                             loadTextKey(1,dataId);
+                            loadArticleKey(1,dataId);
                         }
                         break;
                     default:
