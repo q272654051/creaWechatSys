@@ -95,7 +95,7 @@ function deleteText(id){
 	        		renda.tipMsg.config({width:300,type:'alert',msg:'删除成功'});
 	        		window.location.href = "loginController/toCreateTextInfo";  //加载主页面
 	        	}else{
-	        		alert("删除错误，请稍后再试");
+	        		renda.tipMsg.config({width:300,type:'alert',msg:'删除错误，请稍后再试'});
 	        	}
 	        },
 	        error: function(data){

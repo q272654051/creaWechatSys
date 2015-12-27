@@ -15,14 +15,12 @@ import net.sf.json.JSONObject;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.crea.www.commons.util.JsonUtil;
 import com.crea.www.service.IArticleService;
 import com.crea.www.service.IKeyLinkService;
 import com.crea.www.service.IKeyWordService;
 import com.crea.www.service.ITextService;
-import com.crea.www.service.impl.ArticleServiceImpl;
 import com.crea.www.vo.Article;
 import com.crea.www.vo.KeyLink;
 import com.crea.www.vo.KeyWord;

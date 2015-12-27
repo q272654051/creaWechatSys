@@ -275,11 +275,11 @@
             	var uName = $("#username").val();
                 var uPass = $("#password").val();
                 if (uName == "" || uName == null) {
-                    alert("用户名不能为空！");//提交验证
+                    renda.tipMsg.config({width:300,type:'alert',msg:'用户名不能为空！'});
                     return;
                 }
                 if (uPass == "" || uPass == null) {
-                	alert("密码不能为空！");//提交验证
+                	renda.tipMsg.config({width:300,type:'alert',msg:'密码不能为空！'});
                 	return;
                 }
 
