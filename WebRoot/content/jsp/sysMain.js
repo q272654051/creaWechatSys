@@ -27,7 +27,7 @@ function loadArticle(curPage){
 			            pagerUtil(data.curPage, data.end, data.pageSize,
 			                    data.start, data.totalPage, data.totalRow);
 			            }else{
-			            	listTr.append("<tr><td style='padding:10px; font-size:14px;'>没有图文消息</td></tr>");
+			            	listTr.append("<tr><td colspan='6' class='text-center'>没有图文消息</td></tr>");
 			            }
            },
            error: function(data){
@@ -83,28 +83,31 @@ function DownLoadPage(curPage, totalPage) {
 }
 
 function deletearticle(id){
-	renda.tipMsg.config({width:300,type:'confirm',msg:'确定删除改信息？'});
+	renda.tipMsg.config({width:300,type:'confirm',msg:'确定删除该信息？'});
 	modal = renda.dom.getByClass(document,'modal')[0];
     renda.eventUtil.addEvent(modal,'click',function(e){
-		$.ajax({
-		    type: "post",
-	        url: "massageController/deleteArticle",
-	        async:false,
-	        data: {
-	            "id":id
-	        },
-	        dataType: "json",
-	        success: function(data){
-	        	if(data['success']){
-	        		window.location.href = "loginController/toSysMain";  //加载主页面
-	        	}else{
-	        		renda.tipMsg.config({width:300,type:'alert',msg:'删除错误，请稍后再试'});
-	        	}
-	        },
-	        error: function(data){
-	        	alert("系统错误，请联系管理员");
-	        }
-	    });
+    	var target = e.target || e.srcElement;
+        if(target.getAttribute('data-tip')==='okTip'){
+			$.ajax({
+			    type: "post",
+		        url: "massageController/deleteArticle",
+		        async:false,
+		        data: {
+		            "id":id
+		        },
+		        dataType: "json",
+		        success: function(data){
+		        	if(data['success']){
+		        		window.location.href = "loginController/toSysMain";  //加载主页面
+		        	}else{
+		        		renda.tipMsg.config({width:300,type:'alert',msg:'删除错误，请稍后再试'});
+		        	}
+		        },
+		        error: function(data){
+		        	alert("系统错误，请联系管理员");
+		        }
+		    });
+        }
 	});
 }
 

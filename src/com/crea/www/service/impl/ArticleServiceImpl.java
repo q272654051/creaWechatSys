@@ -68,4 +68,5 @@ public class ArticleServiceImpl  extends BaseDao<Article> implements IArticleSer
         StringBuffer sb=new StringBuffer("from Article t where 1=1 ");
         return    this.findByHQLQuery(sb.toString(), null, pager);
     }
+	
 }

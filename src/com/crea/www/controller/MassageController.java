@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -21,6 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.crea.www.commons.util.JsonUtil;
 import com.crea.www.commons.util.Pager;
+import com.crea.www.commons.util.ReadProperties;
 import com.crea.www.service.IArticleService;
 import com.crea.www.service.IKeyLinkService;
 import com.crea.www.service.IKeyWordService;
@@ -178,7 +180,13 @@ public class MassageController {
     public void deleteArticle(HttpServletRequest request, HttpServletResponse response,PrintWriter printWriter){
     	Map<String,Object> result_map = new HashMap<String,Object>();
         String id = request.getParameter("id");
+        Pager pager = articleService.findBySQLQuery(id,new Pager(1,5));
+        List<Article> articleList = pager.getList();
+        String picUrl = articleList.get(0).getPicUrl();
+        String realPath = request.getSession().getServletContext()
+                .getRealPath("/") + "upload/"+picUrl.split("upload")[1];
         Boolean bon = articleService.deleteArticleById(id);
+        deleteFile(realPath);
         result_map.put("success", bon);
         printWriter.print(JsonUtil.jsonObject(result_map, null, null));
         printWriter.flush();
@@ -215,16 +223,32 @@ public class MassageController {
               //这里使用Apache的FileUtils方法来进行保存
 				FileUtils.copyInputStreamToFile(file.getInputStream(),
 						new File(filePath, fileName));
-				result = "http://127.0.0.1:8080/creaWechatSys/upload/"+fileName;
+				String urlPath = ReadProperties.readPropertie("FileStorage", "UrlPath");
+				result = urlPath+"/upload/"+fileName;
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }else{
         }
-        System.out.println(result);
         out.write(result);
         out.flush();
         out.close();
+    }
+    
+    /**
+     * 删除单个文件
+     * @param   sPath    被删除文件的文件名
+     * @return 单个文件删除成功返回true，否则返回false
+     */
+    public boolean deleteFile(String sPath) {
+        Boolean flag = false;
+        File file = new File(sPath);
+        // 路径为文件且不为空则进行删除
+        if (file.isFile() && file.exists()) {
+            file.delete();
+            flag = true;
+        }
+        return flag;
     }
     
 }

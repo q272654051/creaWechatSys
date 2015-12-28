@@ -10,7 +10,7 @@ import java.util.Properties;
  */
 public class ReadProperties {
     private static final String properties = "FileStorage.properties";
-	private static final String PropertiesPath = "com/yunfang/yunhe/commons/properties/";//properties文件所在路径
+	private static final String PropertiesPath = "com/crea/www/commons/properties/";//properties文件所在路径
     private static Properties fileProperties = null;
     /* 读取配置文件*/
     static {

@@ -562,6 +562,8 @@
                         //alert('选中查询数据');
                         if( renda.has.hasClass(obj,'active') ){
                             obj.className = 'btn btn-default key-item';
+                            loadTextKey(1,"");
+                            loadArticleKey(1,"");
                         }else{
                             for (var i = 0; i < aItem.length; i++) {
                                 renda.dom.removeClass(aItem[i],'btn-success active');
@@ -589,8 +591,6 @@
                 return;
             }
             oEm.innerHTML = sLen;
-            console.log(oEm);
-            console.log(sLen);
             /*$.ajax({
                 // 请求匹配关键字
                 type: 'get',

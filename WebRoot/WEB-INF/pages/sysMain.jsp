@@ -79,7 +79,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         </div>
                         <div class="form-group">
                             <div class="checkbox">
-                                <label><input type="checkbox"/>源文链接</label>
+                                <label><!-- <input type="checkbox"/> -->源文链接</label>
                             </div>
                             <input type="text" id="url" class="form-control" placeholder="http://"/>
                         </div>
