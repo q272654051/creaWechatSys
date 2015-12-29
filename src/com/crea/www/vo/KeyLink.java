@@ -11,7 +11,7 @@ import javax.persistence.Table;
  * Users entity. @author MyEclipse Persistence Tools
  */
 @Entity
-@Table(name = "keylink", catalog = "creawechatsys")
+@Table(name = "keylink", catalog = "rendaweixin")
 public class KeyLink implements java.io.Serializable {
 
 	// Fields

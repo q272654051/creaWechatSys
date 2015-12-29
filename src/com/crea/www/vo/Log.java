@@ -12,7 +12,7 @@ import javax.persistence.Table;
  * Log entity. @author MyEclipse Persistence Tools
  */
 @Entity
-@Table(name = "log", catalog = "creawechatsys")
+@Table(name = "log", catalog = "rendaweixin")
 public class Log implements java.io.Serializable {
 
 	// Fields

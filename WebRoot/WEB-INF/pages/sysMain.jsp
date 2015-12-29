@@ -62,7 +62,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             <img id="headpic" src="http://www.crea.com.cn/renda/Public/images/logo.png" alt="" width="250" height="150">
                         </a>
                         <!-- <div class="form-group file-upload">
-                             <input type="file" id="exampleInputFile">
+                             <input type="file" id="exampleInputFile" name="exampleInputFile">
                         </div> -->
                             <input type="file" id="exampleInputFile" name="exampleInputFile">
                             <input type="button" id="uploadImg" class="help-block" value="生成路径">

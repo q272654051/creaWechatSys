@@ -97,6 +97,7 @@ public class ReplyController {
         			String massageId = keyLink.getMassageId();
         			text = textService.findById(massageId);
         			article = articleService.findById(massageId);
+        			if (text == null && article == null) continue;
         			if (text != null){
         				String content = text.getContent();
         				json.put("keyWord", keyWords);
@@ -122,6 +123,7 @@ public class ReplyController {
         				json.put("picUrl", "");
         				json.put("url", "");
         			}
+        			
         			jsonArray.add(json);
         		}
         	}
