@@ -16,8 +16,8 @@ function loadText(curPage){
 			            for (var i = 0; i < data.list.length; i++) {
 			            		listTr.append("<tr><th scope='row'>" + id + "</th><td>" + data.list[i].content
 			            		+ "</td><td>" 
-			            		+ '<a href="javascript:;" onclick="editText('+ "'" + data.list[i].id + "'" +')" class="btn btn-sm btn-info">修改</a>'
-			            		+ '<a href="javascript:void(0)" onclick="deleteText('+ "'" + data.list[i].id + "'" +')"class="btn btn-sm btn-warning">删除</a></td></tr>');
+			            		+ '<a href="javascript:;" data-op="updata" data-id='+data.list[i].id+' class="btn btn-sm btn-info">修改</a>'
+			            		+ '<a href="javascript:void(0)" data-op="del" data-id='+data.list[i].id+' class="btn btn-sm btn-warning">删除</a></td></tr>');
 			            id = id + 1;
 			            }
 			            pagerUtil(data.curPage, data.end, data.pageSize,
@@ -25,12 +25,33 @@ function loadText(curPage){
 			            }else{
 			            	listTr.append("<tr><td colspan='3' class='text-center'>没有文本消息</td></tr>");
 			            }
+                   setTimeout(function(){
+                	   editText();
+                   },500);
            },
            error: function(data){
                alert("系统错误，请联系管理员");
            }
     });
 }
+
+/*function editText(){
+	var aAs = $('#textList').find('a'),$elm;
+	aAs.each(function(idx,elm){
+		$elm = $(elm);
+		$elm.unbind('click').bind('click',function(e){
+			var target = $(e.target),dataId = $(this).attr('data-id');
+			if( target.is('a') ){
+				if(target.attr('data-op') == 'updata'){
+					alert(dataId);
+					
+				}else if( target.attr('data-op') == 'del' ){
+					deleteText(dataId);
+				}
+			}
+		});
+	})
+}*/
 
 function pagerUtil(curPage, end, pageSize, start, totalPage, totalRow) {
     var pageUL = $(".pagination");
@@ -107,8 +128,9 @@ function deleteText(id){
         }
 	});
 }
-
+/*
 function editText(id){
+	return false;
 	var content = prompt("请输入新的消息:","");
 	if (content != null){
 		$.ajax({
@@ -135,4 +157,4 @@ function editText(id){
 	}else {
 		return false;
 	}
-}
+}*/

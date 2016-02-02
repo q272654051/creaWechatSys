@@ -57,6 +57,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
         <div class="col-sm-9 col-md-10 col-sm-offset-3 col-md-offset-2 sys-con">
             <form action="" method="post" name="form">
+            	<input type="hidden" id="textId">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
@@ -96,7 +97,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script type="text/javascript" src="content/js/sys.js"></script>
 <script charset="utf-8" src="content/editor/kindeditor-min.js"></script>
 <script charset="utf-8" src="content/editor/lang/zh_CN.js"></script>
-<script type="text/javascript" src="content/jsp/textInfo.js"></script>
+
 
 <script type="text/javascript">
     var editor;
@@ -107,6 +108,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             allowImageUpload : false,
             items : ['link']
         });
+        
         K('#saveBtn').click(function(e) {
             //alert(editor.html());
             var content = editor.html();
@@ -135,10 +137,29 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         });
     });
     
+    function editText(){
+		var aAs = $('#textList').find('a'),$elm;
+		aAs.each(function(idx,elm){
+			$elm = $(elm);
+			$elm.unbind('click').bind('click',function(e){
+				var target = $(e.target),dataId = $(this).attr('data-id'),shtml=$(this).parent().prev().html();;
+				if( target.is('a') ){
+					if(target.attr('data-op') == 'updata'){
+						$("#textId").val(dataId);
+						editor.html(shtml);
+					}else if( target.attr('data-op') == 'del' ){
+						deleteText(dataId);
+					}
+				}
+			});
+		})
+	}
+    
 $(function(){
     loadText(1);
 })
 
 </script>
+<script type="text/javascript" src="content/jsp/textInfo.js"></script>
 </body>
 </html>
